@@ -1,0 +1,13 @@
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\bin\Debug\net6.0\dbContaLibrary.deps.json
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\bin\Debug\net6.0\dbContaLibrary.dll
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\bin\Debug\net6.0\dbContaLibrary.pdb
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\obj\Debug\net6.0\dbContaLibrary.csproj.AssemblyReference.cache
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\obj\Debug\net6.0\dbContaLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\obj\Debug\net6.0\dbContaLibrary.AssemblyInfoInputs.cache
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\obj\Debug\net6.0\dbContaLibrary.AssemblyInfo.cs
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\obj\Debug\net6.0\dbContaLibrary.csproj.CoreCompileInputs.cache
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\obj\Debug\net6.0\dbContaLibrary.sourcelink.json
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\obj\Debug\net6.0\dbContaLibrary.dll
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\obj\Debug\net6.0\refint\dbContaLibrary.dll
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\obj\Debug\net6.0\dbContaLibrary.pdb
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaLibrary\obj\Debug\net6.0\ref\dbContaLibrary.dll
