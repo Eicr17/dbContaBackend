@@ -16,7 +16,6 @@
           "dbContaApi.dll": {}
         }
       },
-      "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
       "Microsoft.OpenApi/1.2.3": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
@@ -45,8 +44,6 @@
         "dependencies": {
           "System.Diagnostics.PerformanceCounter": "6.0.2",
           "System.DirectoryServices.Protocols": "8.0.2",
-          "System.Formats.Asn1": "6.0.1",
-          "System.Memory": "4.6.0",
           "System.Security.Cryptography.Pkcs": "6.0.4"
         },
         "runtime": {
@@ -58,7 +55,6 @@
       },
       "Swashbuckle.AspNetCore/6.5.0": {
         "dependencies": {
-          "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
           "Swashbuckle.AspNetCore.Swagger": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerUI": "6.5.0"
@@ -178,19 +174,7 @@
           }
         }
       },
-      "System.Formats.Asn1/6.0.1": {
-        "runtime": {
-          "lib/net6.0/System.Formats.Asn1.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.3224.31407"
-          }
-        }
-      },
-      "System.Memory/4.6.0": {},
       "System.Security.Cryptography.Pkcs/6.0.4": {
-        "dependencies": {
-          "System.Formats.Asn1": "6.0.1"
-        },
         "runtime": {
           "lib/net6.0/System.Security.Cryptography.Pkcs.dll": {
             "assemblyVersion": "6.0.0.0",
@@ -271,13 +255,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Ckb5EDBUNJdFWyajfXzUIMRkhf52fHZOQuuZg/oiu8y7zDCVwD0iHhew6MnThjHmevanpxL3f5ci2TtHQEN6bw==",
-      "path": "microsoft.extensions.apidescription.server/6.0.5",
-      "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
-    },
     "Microsoft.OpenApi/1.2.3": {
       "type": "package",
       "serviceable": true,
@@ -354,20 +331,6 @@
       "sha512": "sha512-NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
       "path": "system.drawing.common/6.0.0",
       "hashPath": "system.drawing.common.6.0.0.nupkg.sha512"
-    },
-    "System.Formats.Asn1/6.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-glgtKqWJpH9GDw0m9I5xFiF6WDIQqi/eZXU6MkMRPzAWEERGGAJh+qztkrlWSDbokQ1jalj5NcBNIvVoSDpSSA==",
-      "path": "system.formats.asn1/6.0.1",
-      "hashPath": "system.formats.asn1.6.0.1.nupkg.sha512"
-    },
-    "System.Memory/4.6.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-OEkbBQoklHngJ8UD8ez2AERSk2g+/qpAaSWWCBFbpH727HxDq5ydVkuncBaKcKfwRqXGWx64dS6G1SUScMsitg==",
-      "path": "system.memory/4.6.0",
-      "hashPath": "system.memory.4.6.0.nupkg.sha512"
     },
     "System.Security.Cryptography.Pkcs/6.0.4": {
       "type": "package",

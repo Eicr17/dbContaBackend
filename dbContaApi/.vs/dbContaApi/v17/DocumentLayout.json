@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7AD5BFD0-BC04-4881-BFB8-9319080A776E}|dbContaApi\\dbContaApi.csproj|c:\\proyecto\\dbcontabackend\\dbcontaapi\\dbcontaapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7AD5BFD0-BC04-4881-BFB8-9319080A776E}|dbContaApi\\dbContaApi.csproj|solutionrelative:dbcontaapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AD5BFD0-BC04-4881-BFB8-9319080A776E}|dbContaApi\\dbContaApi.csproj|c:\\proyecto\\dbcontabackend\\dbcontaapi\\dbcontaapi\\controllers\\tipolibrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AD5BFD0-BC04-4881-BFB8-9319080A776E}|dbContaApi\\dbContaApi.csproj|solutionrelative:dbcontaapi\\controllers\\tipolibrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5BE35C98-44BA-46DB-A414-03E4D39A793E}|dbContaLibrary\\dbContaLibrary.csproj|c:\\proyecto\\dbcontabackend\\dbcontaapi\\dbcontalibrary\\servicios\\srvtipolibro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5BE35C98-44BA-46DB-A414-03E4D39A793E}|dbContaLibrary\\dbContaLibrary.csproj|solutionrelative:dbcontalibrary\\servicios\\srvtipolibro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -33,20 +41,42 @@
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\dbContaApi\\appsettings.json",
+              "RelativeDocumentMoniker": "dbContaApi\\appsettings.json",
+              "ToolTip": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\dbContaApi\\appsettings.json",
+              "RelativeToolTip": "dbContaApi\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-04T21:04:29.155Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "SrvTipoLibro.cs",
               "DocumentMoniker": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\dbContaLibrary\\Servicios\\SrvTipoLibro.cs",
               "RelativeDocumentMoniker": "dbContaLibrary\\Servicios\\SrvTipoLibro.cs",
               "ToolTip": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\dbContaLibrary\\Servicios\\SrvTipoLibro.cs",
               "RelativeToolTip": "dbContaLibrary\\Servicios\\SrvTipoLibro.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAmwBsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAA5wGMAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-03T15:56:32.917Z",
+              "WhenOpened": "2026-02-04T18:10:56.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TipoLibroController.cs",
+              "DocumentMoniker": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\dbContaApi\\Controllers\\TipoLibroController.cs",
+              "RelativeDocumentMoniker": "dbContaApi\\Controllers\\TipoLibroController.cs",
+              "ToolTip": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\dbContaApi\\Controllers\\TipoLibroController.cs",
+              "RelativeToolTip": "dbContaApi\\Controllers\\TipoLibroController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAowIEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-04T16:10:13.078Z",
               "EditorCaption": ""
             }
           ]

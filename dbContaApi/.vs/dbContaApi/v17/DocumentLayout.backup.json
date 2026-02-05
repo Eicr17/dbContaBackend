@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7AD5BFD0-BC04-4881-BFB8-9319080A776E}|dbContaApi\\dbContaApi.csproj|c:\\proyecto\\dbcontabackend\\dbcontaapi\\dbcontaapi\\controllers\\tipolibrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AD5BFD0-BC04-4881-BFB8-9319080A776E}|dbContaApi\\dbContaApi.csproj|solutionrelative:dbcontaapi\\controllers\\tipolibrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5BE35C98-44BA-46DB-A414-03E4D39A793E}|dbContaLibrary\\dbContaLibrary.csproj|c:\\proyecto\\dbcontabackend\\dbcontaapi\\dbcontalibrary\\servicios\\srvtipolibro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5BE35C98-44BA-46DB-A414-03E4D39A793E}|dbContaLibrary\\dbContaLibrary.csproj|solutionrelative:dbcontalibrary\\servicios\\srvtipolibro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,15 +38,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "SrvTipoLibro.cs",
               "DocumentMoniker": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\dbContaLibrary\\Servicios\\SrvTipoLibro.cs",
               "RelativeDocumentMoniker": "dbContaLibrary\\Servicios\\SrvTipoLibro.cs",
               "ToolTip": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\dbContaLibrary\\Servicios\\SrvTipoLibro.cs",
               "RelativeToolTip": "dbContaLibrary\\Servicios\\SrvTipoLibro.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAmwBsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAowFYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-03T15:56:32.917Z",
+              "WhenOpened": "2026-02-04T18:10:56.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TipoLibroController.cs",
+              "DocumentMoniker": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\dbContaApi\\Controllers\\TipoLibroController.cs",
+              "RelativeDocumentMoniker": "dbContaApi\\Controllers\\TipoLibroController.cs",
+              "ToolTip": "C:\\Proyecto\\dbContaBackend\\dbContaApi\\dbContaApi\\Controllers\\TipoLibroController.cs",
+              "RelativeToolTip": "dbContaApi\\Controllers\\TipoLibroController.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAowD4AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-04T16:10:13.078Z",
               "EditorCaption": ""
             }
           ]

@@ -5,10 +5,95 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/TipoLibro/Obtener": {
+    "/api/TipoLibro/Get": {
       "get": {
         "tags": [
           "TipoLibro"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TipoLibro/Crear": {
+      "post": {
+        "tags": [
+          "TipoLibro"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoLibroApi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoLibroApi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoLibroApi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TipoLibro/Actualizar": {
+      "put": {
+        "tags": [
+          "TipoLibro"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoLibroApi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoLibroApi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoLibroApi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TipoLibro/Eliminar/{pId}": {
+      "put": {
+        "tags": [
+          "TipoLibro"
+        ],
+        "parameters": [
+          {
+            "name": "pId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -59,6 +144,32 @@
   },
   "components": {
     "schemas": {
+      "TipoLibroApi": {
+        "type": "object",
+        "properties": {
+          "idtipolibro": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuariocreacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechacreacion": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
       "WeatherForecast": {
         "type": "object",
         "properties": {

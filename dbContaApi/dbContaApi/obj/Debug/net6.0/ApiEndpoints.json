@@ -1,8 +1,56 @@
 [
   {
     "ContainingType": "dbContaApi.Controllers.TipoLibroController",
+    "Method": "Actualizar",
+    "RelativePath": "api/TipoLibro/Actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.TipoLibroApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.TipoLibroController",
+    "Method": "Crear",
+    "RelativePath": "api/TipoLibro/Crear",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.TipoLibroApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.TipoLibroController",
+    "Method": "Eliminar",
+    "RelativePath": "api/TipoLibro/Eliminar/{pId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.TipoLibroController",
     "Method": "Get",
-    "RelativePath": "api/TipoLibro/Obtener",
+    "RelativePath": "api/TipoLibro/Get",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

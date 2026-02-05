@@ -11,7 +11,6 @@ C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\Oracle.Managed
 C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\System.Formats.Asn1.dll
 C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\dbContaLibrary.dll
 C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\dbContaLibrary.pdb
 C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\obj\Debug\net6.0\dbContaApi.csproj.AssemblyReference.cache
@@ -57,3 +56,4 @@ C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\runtimes\win\l
 C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Proyecto\dbContaBackend\dbContaApi\dbContaApi\obj\Debug\net6.0\swae.build.ex.cache
