@@ -1,4 +1,5 @@
 ﻿using dbContaApi.Modelos;
+using dbContaLibrary.Interfaces;
 using dbContaLibrary.Modelos;
 using dbContaLibrary.Servicios;
 using Microsoft.AspNetCore.Http;
@@ -11,28 +12,33 @@ namespace dbContaApi.Controllers
     [ApiController]
     public class TipoLibroController : ControllerBase
     {
+        private readonly ITipoLibro _tipoLibroService;
+        public TipoLibroController(ITipoLibro tipoLibroService)
+        {
+            _tipoLibroService = tipoLibroService;
+        }
+
         [HttpGet]
         [Route("Get")]
         public IActionResult Get()
         {
             var respuesta = new ApiRespuestaListado<TipoLibroApi>();
-            var lstTpLibro = new List<MdlTipoLibro>();
             var lstLibroTipo = new List<TipoLibroApi>();
 
             try
             {
-                lstTpLibro = SrvTipoLibro.GetList();
-                lstTpLibro.ForEach(
+                var lstTpLibroTask = _tipoLibroService.GetList();
+                lstTpLibroTask.ForEach(
                     lib =>
                     {
                         lstLibroTipo.Add(
                           new TipoLibroApi
                           {
-                              idtipolibro = lib.Id_Tipo_Libro,
+                              idtipolibro = lib.IdTipoLibro,
                               nombre = lib.Nombre,
                               descripcion = lib.Descripcion,
-                              usuariocreacion = lib.Usuario_Creacion,
-                              fechacreacion = lib.Fecha_Creacion,
+                              usuariocreacion = lib.UsuarioCreacion,
+                              fechacreacion = lib.FechaCreacion,
                           }
                           );
 
@@ -40,7 +46,7 @@ namespace dbContaApi.Controllers
 
                 respuesta.datos = lstLibroTipo;
                 respuesta.mensaje = string.Empty;
-                respuesta.total_registros = lstTpLibro.Count;
+                respuesta.total_registros = lstLibroTipo.Count;
 
                 return Ok(respuesta);
 
@@ -54,17 +60,16 @@ namespace dbContaApi.Controllers
 
         [HttpPost]
         [Route("Crear")]
-        public IActionResult Crear([FromBody] TipoLibroApi pRequest) 
+        public IActionResult Crear([FromBody] TipoLibroApi pRequest)
         {
-            var TpLibroInsercion = new SrvTipoLibro();
-            var InsercionTpLibro = new MdlTipoLibroCrear();
+            var lstTpLibroInsert = new MdlTipoLibroCrear();
             try
             {
-                InsercionTpLibro.IdTipoLibro = pRequest.idtipolibro;
-                InsercionTpLibro.Nombre = pRequest.nombre;
-                InsercionTpLibro.Descripcion = pRequest.descripcion;
-                InsercionTpLibro.UsuarioCreacion = pRequest.usuariocreacion;
-                TpLibroInsercion.InsertTipoLibro(InsercionTpLibro);
+                lstTpLibroInsert.IdTipoLibro = pRequest.idtipolibro;
+                lstTpLibroInsert.Nombre = pRequest.nombre;
+                lstTpLibroInsert.Descripcion = pRequest.descripcion;
+                lstTpLibroInsert.UsuarioCreacion = pRequest.usuariocreacion;
+                _tipoLibroService.InsertTipoLibro(lstTpLibroInsert);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "La insercion a sido exitosa";
                 return Ok(resp);
@@ -79,18 +84,17 @@ namespace dbContaApi.Controllers
 
         [HttpPut]
         [Route("Actualizar")]
-        public IActionResult Actualizar([FromBody] TipoLibroApi pRequest) 
+        public IActionResult Actualizar([FromBody] TipoLibroApi pRequest)
         {
-            var TpLibroActualizaicon = new SrvTipoLibro();
-            var ActualizacionTpLibro = new MdlTipoLibroActualizar();
+            var TpLibroActualizaicon = new MdlTipoLibroActualizar();
 
             try
             {
-                ActualizacionTpLibro.IdTipoLibro = pRequest.idtipolibro;
-                ActualizacionTpLibro.Nombre = pRequest.nombre;
-                ActualizacionTpLibro.Descripcion = pRequest.descripcion;
-                ActualizacionTpLibro.Usuario_Creacion = pRequest.usuariocreacion;
-                TpLibroActualizaicon.ActualizarTipoLibro(ActualizacionTpLibro);
+                TpLibroActualizaicon.IdTipoLibro = pRequest.idtipolibro;
+                TpLibroActualizaicon.Nombre = pRequest.nombre;
+                TpLibroActualizaicon.Descripcion = pRequest.descripcion;
+                TpLibroActualizaicon.Usuario_Creacion = pRequest.usuariocreacion;
+                _tipoLibroService.ActualizarTipoLibro(TpLibroActualizaicon);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "La Actualizacion ha sido exitosa";
                 return Ok(resp);
@@ -100,38 +104,33 @@ namespace dbContaApi.Controllers
                 return BadRequest(ex.Message);
                 throw;
             }
-        
-        
+
+
+
         }
-
-        [HttpPut]
-        [Route("Eliminar/{pId}")]
-        public IActionResult Eliminar(int pId) 
-        {
-            var srvTipoLibro = new SrvTipoLibro();
-            var resp = new ApiRespuesta();
-
-            try
+            [HttpPut]
+            [Route("Eliminar/{pId}")]
+            public IActionResult Eliminar(int pId)
             {
-                srvTipoLibro.Eliminar(pId);
-                resp.exitosa = true;
-                resp.mensaje = "El Registro a sido eliminado";
-                return Ok(resp);
+     
+                var resp = new ApiRespuesta();
+
+                try
+                {
+                    _tipoLibroService.Eliminar(pId);
+                    resp.exitosa = true;
+                    resp.mensaje = "El Registro a sido eliminado";
+                    return Ok(resp);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                    throw;
+                }
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-                throw;
-            }
+
+
+
         }
-
-
-
-    }
-
-
-
-
-
 
 }

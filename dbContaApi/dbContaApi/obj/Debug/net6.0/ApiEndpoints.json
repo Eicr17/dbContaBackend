@@ -1,5 +1,63 @@
 [
   {
+    "ContainingType": "dbContaApi.Controllers.TipoDocumentoController",
+    "Method": "Actualizar",
+    "RelativePath": "api/TipoDocumento/Actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "dbContaLibrary.Modelos.MdlTpDocActualizar",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.TipoDocumentoController",
+    "Method": "Eliminar",
+    "RelativePath": "api/TipoDocumento/Eliminar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.TipoDocumentoController",
+    "Method": "Get",
+    "RelativePath": "api/TipoDocumento/Get",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.TipoDocumentoController",
+    "Method": "Insertar",
+    "RelativePath": "api/TipoDocumento/Insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.TipoDocumentoApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "dbContaApi.Controllers.TipoLibroController",
     "Method": "Actualizar",
     "RelativePath": "api/TipoLibro/Actualizar",

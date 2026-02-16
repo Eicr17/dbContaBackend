@@ -7,18 +7,24 @@ using System.Data;
 using System.Data.Common;
 using Oracle.ManagedDataAccess.Client;
 using dbContaLibrary.Modelos;
+using dbContaLibrary.Interfaces;
 
 
 namespace dbContaLibrary.Servicios
-{
-    public  class SrvTipoLibro
+{    
+    public  class TipoLibro : ITipoLibro
     {
-
-        public static List<MdlTipoLibro> GetList() 
+        private  readonly IAPPConfiguracion _config;
+        public TipoLibro(IAPPConfiguracion pConfig)
+        {
+            _config = pConfig;  
+        }
+        public List<MdlTipoLibro> GetList() 
         {
             var lst = new List<MdlTipoLibro>();
 
-            var con  = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.90)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE))); User Id=DBCONTA;Password=conta123");
+            //var con  = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.90)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE))); User Id=DBCONTA;Password=conta123");
+            var con = new OracleConnection(_config.CadenaConexion);
             con.Open();
 
             var cmd = new OracleCommand();
@@ -31,11 +37,11 @@ namespace dbContaLibrary.Servicios
                 while(dr.Read())
                 {
                     var item = new MdlTipoLibro();
-                    item.Id_Tipo_Libro = int.Parse(dr.GetValue(0).ToString());
+                    item.IdTipoLibro = int.Parse(dr.GetValue(0).ToString());
                     item.Nombre = dr.GetValue(1).ToString();
                     item.Descripcion = dr.GetValue(2).ToString();
-                    item.Usuario_Creacion = dr.GetValue(3).ToString();
-                    item.Fecha_Creacion = DateTime.Parse( dr.GetValue(4).ToString());
+                    item.UsuarioCreacion = dr.GetValue(3).ToString();
+                    item.FechaCreacion = DateTime.Parse( dr.GetValue(4).ToString());
                     lst.Add(item);
                 }
             }
@@ -44,9 +50,8 @@ namespace dbContaLibrary.Servicios
             return lst;
         }
         public void InsertTipoLibro(MdlTipoLibroCrear item) 
-        {          
-
-            var con = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.90)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE))); User Id=DBCONTA;Password=conta123");
+        {
+            var con = new OracleConnection(_config.CadenaConexion);
             con.Open();
 
             var cmd = new OracleCommand();

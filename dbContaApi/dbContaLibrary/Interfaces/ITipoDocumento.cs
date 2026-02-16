@@ -1,0 +1,18 @@
+﻿using dbContaLibrary.Modelos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace dbContaLibrary.Interfaces
+{
+    public interface ITipoDocumento
+    {
+        public List<MdlTipoDocumento> GetList();
+        public void InsertarTipoDoc(MdlTipoDocCrear item);
+        public void ActualizarTpDoc(MdlTpDocActualizar item);
+        public void Eliminar(int pId);
+
+    }
+}
