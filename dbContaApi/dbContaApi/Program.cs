@@ -22,7 +22,13 @@ builder.Services.AddAntiforgery();
 builder.Services.AddAPPConfiguration(configuration);
 builder.Services.AddTipoLibro();
 builder.Services.AddTipoDocumento();
-
+builder.Services.AddTipoArticulo();
+builder.Services.AddArticulo();
+builder.Services.AddCatDocumento();
+builder.Services.AddEmpresa();
+builder.Services.AddDocumento();
+builder.Services.AddDtDetalle();
+builder.Services.AddGenTipoLibro();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

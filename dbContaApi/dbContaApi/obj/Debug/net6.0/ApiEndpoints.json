@@ -1,5 +1,369 @@
 [
   {
+    "ContainingType": "dbContaApi.Controllers.ArticuloController",
+    "Method": "Actualizar",
+    "RelativePath": "api/Articulo/Actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "dbContaApi.Modelos.ArticuloApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.ArticuloController",
+    "Method": "Eliminar",
+    "RelativePath": "api/Articulo/Eliminar/{pId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.ArticuloController",
+    "Method": "Insert",
+    "RelativePath": "api/Articulo/Insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "dbContaApi.Modelos.ArticuloApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.ArticuloController",
+    "Method": "GetArticulo",
+    "RelativePath": "api/Articulo/Obtener",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.CatDocumentoController",
+    "Method": "Actualizar",
+    "RelativePath": "api/CatDocumento/Actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "dbContaApi.Modelos.CatDocumentoApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.CatDocumentoController",
+    "Method": "Insertar",
+    "RelativePath": "api/CatDocumento/Crear",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "dbContaApi.Modelos.CatDocumentoApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.CatDocumentoController",
+    "Method": "Eliminar",
+    "RelativePath": "api/CatDocumento/Eliminar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.CatDocumentoController",
+    "Method": "GetCatDocumento",
+    "RelativePath": "api/CatDocumento/Obtener",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.DocumentoController",
+    "Method": "Actualizar",
+    "RelativePath": "api/Documento/Actualiar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.DocumentoApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.DocumentoController",
+    "Method": "Eliminar",
+    "RelativePath": "api/Documento/Eliminar/{pId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.DocumentoController",
+    "Method": "Insert",
+    "RelativePath": "api/Documento/Insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.DocumentoApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.DocumentoController",
+    "Method": "Get",
+    "RelativePath": "api/Documento/Obtener",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.DocumentoDetalleController",
+    "Method": "Actualizar",
+    "RelativePath": "api/DocumentoDetalle/Actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.DocumentoDetalleApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.DocumentoDetalleController",
+    "Method": "Eliminar",
+    "RelativePath": "api/DocumentoDetalle/Eliminar/{pId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.DocumentoDetalleController",
+    "Method": "Insertar",
+    "RelativePath": "api/DocumentoDetalle/Insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.DocumentoDetalleApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.DocumentoDetalleController",
+    "Method": "GetDocumentoeDetalle",
+    "RelativePath": "api/DocumentoDetalle/Obtener",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.EmpresaController",
+    "Method": "Actualizar",
+    "RelativePath": "api/Empresa/Actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.EmpresaApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.EmpresaController",
+    "Method": "Eliminar",
+    "RelativePath": "api/Empresa/Eliminar/{pId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.EmpresaController",
+    "Method": "Insertar",
+    "RelativePath": "api/Empresa/Insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.EmpresaApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.EmpresaController",
+    "Method": "Get",
+    "RelativePath": "api/Empresa/Obtener",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.GenTipoLibroController",
+    "Method": "Insertar",
+    "RelativePath": "api/GenTipoLibro/Insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.GenTipoLibroApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.TipoArticuloController",
+    "Method": "Actualizar",
+    "RelativePath": "api/TipoArticulo/Actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.TipoArticuloApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.TipoArticuloController",
+    "Method": "Eliminar",
+    "RelativePath": "api/TipoArticulo/Eliminar/{pId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.TipoArticuloController",
+    "Method": "Get",
+    "RelativePath": "api/TipoArticulo/Get",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.TipoArticuloController",
+    "Method": "InsertarTpArticulo",
+    "RelativePath": "api/TipoArticulo/Insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.TipoArticuloApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "dbContaApi.Controllers.TipoDocumentoController",
     "Method": "Actualizar",
     "RelativePath": "api/TipoDocumento/Actualizar",
@@ -18,7 +382,7 @@
   {
     "ContainingType": "dbContaApi.Controllers.TipoDocumentoController",
     "Method": "Eliminar",
-    "RelativePath": "api/TipoDocumento/Eliminar",
+    "RelativePath": "api/TipoDocumento/Eliminar/{pId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -26,7 +390,7 @@
       {
         "Name": "pId",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

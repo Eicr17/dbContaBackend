@@ -40,7 +40,7 @@ namespace dbContaApi.Controllers
                                 descripcion = lib.Descripcion,
                                 usuariocreacion = lib.UsuarioCreacion,
                                 fechacreacion = lib.FechaCreacion,
-                               //idcategoriadocumento = lib.IdCategoriaDocumento
+                               idcategoriadocumento = lib.IdCategoriaDocumento
 
                             }
 
@@ -100,7 +100,6 @@ namespace dbContaApi.Controllers
                 TpLibroActualizacion.Nombre = item.Nombre;
                 TpLibroActualizacion.Descripcion = item.Descripcion;
                 TpLibroActualizacion.UsuarioCreacion = item.UsuarioCreacion;
-                TpLibroActualizacion.IdCategoriaDocumento = item.IdCategoriaDocumento;
                 _tipoDocumentoService.ActualizarTpDoc(TpLibroActualizacion);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "La Actualizacion ha sido exitosa";
@@ -117,7 +116,7 @@ namespace dbContaApi.Controllers
         }
 
         [HttpPut]
-        [Route("Eliminar")]
+        [Route("Eliminar/{pId}")]
         public IActionResult Eliminar(int pId) 
         {
 

@@ -1,0 +1,40 @@
+3
+
+10*10 100
+10*20 200
+3*10  300
+      600
+
+
+select * 
+from 
+edit fdt01_documento
+where serie_documento = 'AMB'
+AND 
+documento = 402 
+
+
+documento
+vac_formulario
+
+29
+
+Exportaciones2026$
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+Generación Notificaciones
+
+CAMBIO CONTACTO PLANIFICADOR PRY-0-00000547
+
+CAMBIO DE METRAJE PRY-0-00000548

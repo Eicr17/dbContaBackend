@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dbContaApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1d1c603980bf7fb1a1ed5a5f3de81fc26059c88")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6538d129f73d7bf992e1e224578f181d5b33701e")]
 [assembly: System.Reflection.AssemblyProductAttribute("dbContaApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dbContaApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

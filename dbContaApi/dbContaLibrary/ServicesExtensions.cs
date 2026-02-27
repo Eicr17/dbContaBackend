@@ -30,5 +30,53 @@ namespace dbContaLibrary
             services.AddScoped<ITipoDocumento, TipoDocumento>();
             return services;
         }
+
+        public static IServiceCollection AddTipoArticulo(this IServiceCollection services)
+        { 
+            services.AddScoped<ITipoArticulo, TipoArticulo>();
+            return services;
+            
+        }
+
+
+        public static IServiceCollection AddArticulo(this IServiceCollection services)
+        {
+            services.AddScoped<IArticulo, Articulo>();
+            return services;
+            
+        }
+
+        public static IServiceCollection AddCatDocumento(this IServiceCollection services) 
+        {
+            services.AddScoped<ICatDocumento, CategoriaDocumento>();
+            return services;
+        
+        }
+
+
+        public static IServiceCollection AddEmpresa (this IServiceCollection services)
+        {
+            services.AddScoped<IEmpresa, Empresa>();
+            return services;
+        }
+         
+       public static IServiceCollection AddDocumento (this IServiceCollection services)
+        {
+
+            services.AddScoped<IDocumento, Documento>();
+            return services;
+        }
+
+        public static IServiceCollection AddDtDetalle(this IServiceCollection services) 
+        {
+            services.AddScoped<IDocumentoDetalle, DocumentoDetalle>();
+            return services;
+        }
+
+        public static IServiceCollection AddGenTipoLibro(this IServiceCollection services) 
+        {
+            services.AddScoped<IGenTipoLibro, GenerarTipoLibro>();
+             return services;
+        }
     }
 }

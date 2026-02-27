@@ -30,7 +30,7 @@ namespace dbContaLibrary.Servicios
 
                 var cmd = new OracleCommand();
                 cmd.Connection = con;
-                cmd.CommandText = "Select * from tipo_documento";
+                cmd.CommandText = "Select Id_Tipo_Documento,Nombre, Descripcion, Usuario_Creacion, Fecha_Creacion, Id_Categoria_Documento from tipo_documento";
 
                 using (IDataReader dr = cmd.ExecuteReader())
                 {
@@ -42,7 +42,7 @@ namespace dbContaLibrary.Servicios
                         item.Descripcion = dr.GetValue(2).ToString();
                         item.UsuarioCreacion = dr.GetValue(3).ToString();
                         item.FechaCreacion = DateTime.Parse(dr.GetValue(4).ToString());
-                        //item.IdCategoriaDocumento = int.Parse(dr.GetValue(5).ToString());
+                        item.IdCategoriaDocumento = int.Parse(dr.GetValue(5).ToString());
                         lst.Add(item);
                     }
 
@@ -87,7 +87,6 @@ namespace dbContaLibrary.Servicios
                 cmd.Parameters.Add(":nombre", item.Nombre);
                 cmd.Parameters.Add(":descripcion", item.Descripcion);
                 cmd.Parameters.Add("usrcreacion", item.UsuarioCreacion);
-                cmd.Parameters.Add("idcatdoc", item.IdCategoriaDocumento);
                 cmd.ExecuteNonQuery();
             }
 

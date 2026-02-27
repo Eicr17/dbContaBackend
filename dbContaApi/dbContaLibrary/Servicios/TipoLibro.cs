@@ -21,91 +21,84 @@ namespace dbContaLibrary.Servicios
         }
         public List<MdlTipoLibro> GetList() 
         {
-            var lst = new List<MdlTipoLibro>();
 
-            //var con  = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.90)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE))); User Id=DBCONTA;Password=conta123");
-            var con = new OracleConnection(_config.CadenaConexion);
-            con.Open();
-
-            var cmd = new OracleCommand();
-            cmd.Connection = con;
-            cmd.CommandText = "Select * from Tipo_Libro";
-
-            using (IDataReader dr = cmd.ExecuteReader())
+            using (var con = new OracleConnection(_config.CadenaConexion)) 
             {
+                var lst = new List<MdlTipoLibro>();
+                con.Open();
+                var cmd = new OracleCommand("Select Id_Tipo_Libro, Nombre, Descripcion_ Usuario_Creacion, Fecha_Creacion from Tipo_Libro");
+                cmd.Connection = con;
 
-                while(dr.Read())
+                using (IDataReader dr = cmd.ExecuteReader())
                 {
-                    var item = new MdlTipoLibro();
-                    item.IdTipoLibro = int.Parse(dr.GetValue(0).ToString());
-                    item.Nombre = dr.GetValue(1).ToString();
-                    item.Descripcion = dr.GetValue(2).ToString();
-                    item.UsuarioCreacion = dr.GetValue(3).ToString();
-                    item.FechaCreacion = DateTime.Parse( dr.GetValue(4).ToString());
-                    lst.Add(item);
+
+                    while (dr.Read())
+                    {
+                        var item = new MdlTipoLibro();
+                        item.IdTipoLibro = int.Parse(dr.GetValue(0).ToString());
+                        item.Nombre = dr.GetValue(1).ToString();
+                        item.Descripcion = dr.GetValue(2).ToString();
+                        item.UsuarioCreacion = dr.GetValue(3).ToString();
+                        item.FechaCreacion = DateTime.Parse(dr.GetValue(4).ToString());
+                        lst.Add(item);
+                    }
                 }
-            }
-            con.Close();
-            con.Dispose();
-            return lst;
+                return lst;
+            } 
+            
         }
         public void InsertTipoLibro(MdlTipoLibroCrear item) 
         {
-            var con = new OracleConnection(_config.CadenaConexion);
-            con.Open();
-
-            var cmd = new OracleCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Connection = con;
-            cmd.CommandText = "DBCONTA.PRC_GRABAR_TIPO_LIBRO";
-            cmd.Parameters.Add(":Id_Tipo_Libro", item.IdTipoLibro);
-            cmd.Parameters.Add(":nombre", item.Nombre);
-            cmd.Parameters.Add(":descripcion", item.Descripcion);
-            cmd.Parameters.Add(":Usuario_Creacion", item.UsuarioCreacion);
-            cmd.ExecuteNonQuery();
-
-            con.Dispose();
-            con.Close();
+            using (var con = new OracleConnection(_config.CadenaConexion)) 
+            {
+                con.Open();
+                var cmd = new OracleCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = con;
+                cmd.CommandText = "DBCONTA.PRC_GRABAR_TIPO_LIBRO";
+                cmd.Parameters.Add(":Id_Tipo_Libro", item.IdTipoLibro);
+                cmd.Parameters.Add(":nombre", item.Nombre);
+                cmd.Parameters.Add(":descripcion", item.Descripcion);
+                cmd.Parameters.Add(":usrc", item.UsuarioCreacion);
+                cmd.ExecuteNonQuery();
+            }
         }
         
 
 
         public void ActualizarTipoLibro(MdlTipoLibroActualizar item)
         {
+            using(var con = new OracleConnection(_config.CadenaConexion))
+            {
+                con.Open();
 
-            var con = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.90)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE))); User Id=DBCONTA;Password=conta123");
-            con.Open();
-            
-            var cmd = new OracleCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Connection = con;
-            cmd.CommandText = "DBCONTA.PRC_GRABAR_TIPO_LIBRO";
-            cmd.Parameters.Add(":Id_Tipo_Libro", item.IdTipoLibro);
-            cmd.Parameters.Add(":nombre", item.Nombre);
-            cmd.Parameters.Add(":descripcion", item.Descripcion);
-            cmd.Parameters.Add(":Usuario_Creacion", item.Usuario_Creacion);
-            cmd.ExecuteNonQuery();
-
-            con.Dispose();
-            con.Close();
+                var cmd = new OracleCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = con;
+                cmd.CommandText = "DBCONTA.PRC_GRABAR_TIPO_LIBRO";
+                cmd.Parameters.Add(":Id_Tipo_Libro", item.IdTipoLibro);
+                cmd.Parameters.Add(":nombre", item.Nombre);
+                cmd.Parameters.Add(":descripcion", item.Descripcion);
+                cmd.Parameters.Add(":Usuario_Creacion", item.Usuario_Creacion);
+                cmd.ExecuteNonQuery();
+            }            
 
         }
 
         public void Eliminar(int pId)
         {
-            var con = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.90)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE))); User Id=DBCONTA;Password=conta123");
-            con.Open();
 
+            using(var con = new OracleConnection(_config.CadenaConexion)) 
+            {
+                con.Open();
 
-            var cmd = new OracleCommand();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "DBCONTA.PRC_ELIMINAR_TIPO_LIBRO";
-            cmd.Parameters.Add("@id", OracleDbType.Int64).Value = pId;
-            cmd.ExecuteNonQuery();
-
-            con.Dispose();
-            con.Close();
+                var cmd = new OracleCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "DBCONTA.PRC_ELIMINAR_TIPO_LIBRO";
+                cmd.Parameters.Add("@id", OracleDbType.Int64).Value = pId;
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 

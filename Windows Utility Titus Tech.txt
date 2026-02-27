@@ -1,0 +1,27 @@
+Windows Utility Titus Tech
+
+
+duplicate
+
+
+Terminados
+Tipolibro
+TipoDocumento7
+TipoArticulo
+Articulo
+CateogriaDocumento
+Empresa
+Documento
+DocumenteoDetalle (Falta de pruebas)
+LibroDetalle este va con tipo e libro 
+
+ya que hare el controlador la clase la interfaza para la generacion de tipo de libros 
+
+
+
+Roles
+RolUsuario
+Usuario
+
+
+Exportaciones2026$
