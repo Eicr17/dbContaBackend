@@ -29,6 +29,8 @@ builder.Services.AddEmpresa();
 builder.Services.AddDocumento();
 builder.Services.AddDtDetalle();
 builder.Services.AddGenTipoLibro();
+builder.Services.AddLibroDetalle();
+builder.Services.AddLibro();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

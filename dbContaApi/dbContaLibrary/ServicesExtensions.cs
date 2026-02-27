@@ -78,5 +78,18 @@ namespace dbContaLibrary
             services.AddScoped<IGenTipoLibro, GenerarTipoLibro>();
              return services;
         }
+
+        public static IServiceCollection AddLibroDetalle(this IServiceCollection services) 
+        {
+            services.AddScoped<ILibroDetalle, LibroDetalle>();
+            return services;
+        
+        }
+
+        public static IServiceCollection AddLibro(this IServiceCollection services) 
+        {
+            services.AddScoped<ILibro, Libro>();
+            return services;
+        }
     }
 }

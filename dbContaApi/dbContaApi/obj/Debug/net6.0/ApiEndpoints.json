@@ -306,6 +306,26 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "dbContaApi.Controllers.LibroController",
+    "Method": "Get",
+    "RelativePath": "api/Libro/Obtener",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.LibroDetalleController",
+    "Method": "GetLibroDetalle",
+    "RelativePath": "api/LibroDetalle/Obtener",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "dbContaApi.Controllers.TipoArticuloController",
     "Method": "Actualizar",
     "RelativePath": "api/TipoArticulo/Actualizar",

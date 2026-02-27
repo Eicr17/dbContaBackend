@@ -520,6 +520,30 @@
         }
       }
     },
+    "/api/Libro/Obtener": {
+      "get": {
+        "tags": [
+          "Libro"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/LibroDetalle/Obtener": {
+      "get": {
+        "tags": [
+          "LibroDetalle"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/TipoArticulo/Get": {
       "get": {
         "tags": [
@@ -1035,10 +1059,6 @@
             "format": "int32"
           },
           "meslibro": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "monto": {
             "type": "integer",
             "format": "int32"
           }
