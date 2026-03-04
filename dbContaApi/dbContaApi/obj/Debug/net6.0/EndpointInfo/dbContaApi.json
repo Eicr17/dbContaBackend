@@ -624,6 +624,188 @@
         }
       }
     },
+    "/api/Roles/Insertar": {
+      "post": {
+        "tags": [
+          "Roles"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesApi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesApi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesApi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Roles/Actualizar": {
+      "put": {
+        "tags": [
+          "Roles"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesApi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesApi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesApi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Roles/Eliminar/{pId}": {
+      "put": {
+        "tags": [
+          "Roles"
+        ],
+        "parameters": [
+          {
+            "name": "pId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RolUsuario/Obtener": {
+      "get": {
+        "tags": [
+          "RolUsuario"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RolUsuario/Insertar": {
+      "post": {
+        "tags": [
+          "RolUsuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolUsuarioApi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolUsuarioApi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolUsuarioApi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RolUsuario/Actualizar": {
+      "put": {
+        "tags": [
+          "RolUsuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolUsuarioApi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolUsuarioApi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolUsuarioApi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RolUsuario/Eliminar/{pId}": {
+      "put": {
+        "tags": [
+          "RolUsuario"
+        ],
+        "parameters": [
+          {
+            "name": "pId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/TipoArticulo/Get": {
       "get": {
         "tags": [
@@ -773,17 +955,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MdlTpDocActualizar"
+                "$ref": "#/components/schemas/TipoDocumentoApi"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MdlTpDocActualizar"
+                "$ref": "#/components/schemas/TipoDocumentoApi"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MdlTpDocActualizar"
+                "$ref": "#/components/schemas/TipoDocumentoApi"
               }
             }
           }
@@ -1000,8 +1182,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -1246,22 +1427,44 @@
         },
         "additionalProperties": false
       },
-      "MdlTpDocActualizar": {
+      "RolUsuarioApi": {
         "type": "object",
         "properties": {
-          "IdTipoDocumento": {
+          "idrolusuario": {
             "type": "integer",
             "format": "int32"
           },
-          "Nombre": {
+          "idrol": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idusuario": {
             "type": "string",
             "nullable": true
           },
-          "Descripcion": {
+          "fechacreacion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "usuariocreacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RolesApi": {
+        "type": "object",
+        "properties": {
+          "idrol": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombrerol": {
             "type": "string",
             "nullable": true
           },
-          "UsuarioCreacion": {
+          "usuariocreacion": {
             "type": "string",
             "nullable": true
           }

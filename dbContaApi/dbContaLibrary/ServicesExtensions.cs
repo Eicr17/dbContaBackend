@@ -104,5 +104,13 @@ namespace dbContaLibrary
             services.AddScoped<IRoles,Roles>();
             return services;
         }
+
+
+        public static IServiceCollection AddRolUsuario(this IServiceCollection services)
+        {
+
+            services.AddScoped<IRolUsuario, RolUsuario>();
+            return services;
+        }
     }
 }

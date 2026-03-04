@@ -91,15 +91,16 @@ namespace dbContaApi.Controllers
 
         [HttpPut]
         [Route("Actualizar")]
-        public IActionResult Actualizar([FromBody] MdlTpDocActualizar item) 
+        public IActionResult Actualizar([FromBody] TipoDocumentoApi item) 
         {
             var TpLibroActualizacion = new MdlTpDocActualizar();
             try
             {
-                TpLibroActualizacion.IdTipoDocumento = item.IdTipoDocumento;
-                TpLibroActualizacion.Nombre = item.Nombre;
-                TpLibroActualizacion.Descripcion = item.Descripcion;
-                TpLibroActualizacion.UsuarioCreacion = item.UsuarioCreacion;
+                TpLibroActualizacion.IdTipoDocumento = item.idtipodocumento;
+                TpLibroActualizacion.Nombre = item.nombre;
+                TpLibroActualizacion.Descripcion = item.descripcion;
+                TpLibroActualizacion.UsuarioCreacion = item.usuariocreacion;
+                TpLibroActualizacion.IdCategoriaDocumento = item.idcategoriadocumento;
                 _tipoDocumentoService.ActualizarTpDoc(TpLibroActualizacion);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "La Actualizacion ha sido exitosa";

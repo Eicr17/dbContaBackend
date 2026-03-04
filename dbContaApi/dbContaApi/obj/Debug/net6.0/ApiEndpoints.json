@@ -374,8 +374,114 @@
   },
   {
     "ContainingType": "dbContaApi.Controllers.RolesController",
+    "Method": "Actualizar",
+    "RelativePath": "api/Roles/Actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "dbContaApi.Modelos.RolesApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.RolesController",
+    "Method": "Eliminar",
+    "RelativePath": "api/Roles/Eliminar/{pId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.RolesController",
+    "Method": "Insertar",
+    "RelativePath": "api/Roles/Insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "dbContaApi.Modelos.RolesApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.RolesController",
     "Method": "Get",
     "RelativePath": "api/Roles/Obtener",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.RolUsuarioController",
+    "Method": "Actualizar",
+    "RelativePath": "api/RolUsuario/Actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.RolUsuarioApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.RolUsuarioController",
+    "Method": "Eliminar",
+    "RelativePath": "api/RolUsuario/Eliminar/{pId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.RolUsuarioController",
+    "Method": "Insertar",
+    "RelativePath": "api/RolUsuario/Insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.RolUsuarioApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.RolUsuarioController",
+    "Method": "Get",
+    "RelativePath": "api/RolUsuario/Obtener",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -450,7 +556,7 @@
     "Parameters": [
       {
         "Name": "item",
-        "Type": "dbContaLibrary.Modelos.MdlTpDocActualizar",
+        "Type": "dbContaApi.Modelos.TipoDocumentoApi",
         "IsRequired": true
       }
     ],
@@ -582,7 +688,7 @@
     "Parameters": [
       {
         "Name": "pId",
-        "Type": "System.Int32",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

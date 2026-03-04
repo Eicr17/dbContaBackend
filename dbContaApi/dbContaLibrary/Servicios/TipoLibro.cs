@@ -26,7 +26,7 @@ namespace dbContaLibrary.Servicios
             {
                 var lst = new List<MdlTipoLibro>();
                 con.Open();
-                var cmd = new OracleCommand("Select Id_Tipo_Libro, Nombre, Descripcion_ Usuario_Creacion, Fecha_Creacion from Tipo_Libro");
+                var cmd = new OracleCommand("Select Id_Tipo_Libro, Nombre, Descripcion, Usuario_Creacion, Fecha_Creacion from Tipo_Libro");
                 cmd.Connection = con;
 
                 using (IDataReader dr = cmd.ExecuteReader())

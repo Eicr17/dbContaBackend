@@ -12,7 +12,7 @@ namespace dbContaLibrary.Interfaces
         public IEnumerable<MdlUsuario> GetUsuario();
         public void Insertar(MdlUsuarioInsertar item);
         public void Actualizar(MdlUsuarioActualizar item);
-        public void Eliminar(int pId);
+        public void Eliminar(string pId);
 
     }
 }

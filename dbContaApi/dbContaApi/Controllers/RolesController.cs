@@ -108,7 +108,7 @@ namespace dbContaApi.Controllers
         }
 
         [HttpPut]
-        [Route("Eliminar")]
+        [Route("Eliminar/{pId}")]
         public IActionResult Eliminar(int pId)
         {
             var resp = new ApiRespuesta();

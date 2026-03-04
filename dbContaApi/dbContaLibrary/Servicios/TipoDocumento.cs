@@ -87,6 +87,8 @@ namespace dbContaLibrary.Servicios
                 cmd.Parameters.Add(":nombre", item.Nombre);
                 cmd.Parameters.Add(":descripcion", item.Descripcion);
                 cmd.Parameters.Add("usrcreacion", item.UsuarioCreacion);
+                cmd.Parameters.Add("id_categoria_documento", item.IdCategoriaDocumento);
+
                 cmd.ExecuteNonQuery();
             }
 

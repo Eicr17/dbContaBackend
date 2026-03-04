@@ -94,7 +94,7 @@ namespace dbContaLibrary.Servicios
         
         }
 
-        public void Eliminar(int pId)
+        public void Eliminar(string pId)
         {
             using (var con = new OracleConnection(_config.CadenaConexion))
             {
@@ -102,8 +102,9 @@ namespace dbContaLibrary.Servicios
                 var cmd = new OracleCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "PRC_ACTUALIZAR_Eliminar ";
-                cmd.Parameters.Add("idusuario", OracleDbType.Int64).Value = pId;
+                cmd.CommandText = "DBCONTA.PRC_USUARIO_ELIMINAR ";
+                cmd.Parameters.Add("idusuario", OracleDbType.Varchar2).Value = pId;
+                cmd.ExecuteNonQuery();
 
             }
         }

@@ -97,6 +97,7 @@ namespace dbContaLibrary.Servicios
                 con.Open();
                 var cmd = new OracleCommand();
                 cmd.Connection = con;
+                cmd.CommandText = "";
 
                 cmd.Parameters.Add(":idrol" , OracleDbType.Int64).Value = pIdRol;
                 cmd.ExecuteNonQuery();
