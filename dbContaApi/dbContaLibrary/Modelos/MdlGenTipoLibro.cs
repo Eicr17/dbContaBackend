@@ -14,5 +14,6 @@ namespace dbContaLibrary.Modelos
         public string Usuario { get; set; }
         public int AnioLibro { get; set; }
         public int MesLibro { get; set; }
+        public int IdLibro { get; set; }
     }
 }

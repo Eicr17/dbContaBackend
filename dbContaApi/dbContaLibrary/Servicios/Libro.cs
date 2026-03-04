@@ -3,6 +3,7 @@ using dbContaLibrary.Modelos;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,11 +44,29 @@ namespace dbContaLibrary.Servicios
                         lstLibro.Add(item);
                     }
                     return lstLibro;
-                }
-                
-            
+                }   
             }
         
+        }
+
+        public void Eliminar(int pIdLibro, int pIdEmpresa,  int pIdTipoLibro) 
+        {
+            using (var con = new OracleConnection(_config.CadenaConexion))
+            {
+                con.Open();
+                var cmd = new OracleCommand();
+                cmd.Connection = con;
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "DBCONTA.PRC_ELIMINAR_LIBRO";
+                cmd.Parameters.Add(":IdLibro", OracleDbType.Int64).Value = pIdLibro;
+                cmd.Parameters.Add(":IdEmpresa", OracleDbType.Int64).Value = pIdEmpresa;
+                cmd.Parameters.Add(":IdTipoLibro", OracleDbType.Int64).Value = pIdTipoLibro;
+                cmd.ExecuteNonQuery();
+
+            }
+
+
         }
 
     }

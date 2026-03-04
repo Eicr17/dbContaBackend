@@ -3,7 +3,10 @@ using dbContaLibrary.Modelos;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,6 +52,23 @@ namespace dbContaLibrary.Servicios
             
             }
         
+        }
+
+
+        public void Eliminar(int pIdlibroDetalle,int pIdLibro) 
+        {
+            using (var con = new OracleConnection(_config.CadenaConexion)) 
+            {
+                con.Open();
+                var cmd = new OracleCommand();
+                cmd.Connection = con;
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText  = "PRC_ELIMINAR_LIBRO_DETALLE";
+                cmd.Parameters.Add(":pIdLibroDetalle", OracleDbType.Int64).Value = pIdlibroDetalle;
+                cmd.Parameters.Add(":pIdLibro", OracleDbType.Int64).Value = pIdLibro;
+                cmd.ExecuteNonQuery();                    
+            }
         }
     }
 }

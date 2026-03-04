@@ -29,6 +29,7 @@ namespace dbContaApi.Controllers
                 GenTpLibro.Usuario = pRequest.usuario;
                 GenTpLibro.AnioLibro = pRequest.aniolibro;
                 GenTpLibro.MesLibro = pRequest.meslibro;
+                GenTpLibro.IdLibro = pRequest.idlibro;
                 _gentipolibroservices.Insertar(GenTpLibro);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a insertado el libro exitosamente";

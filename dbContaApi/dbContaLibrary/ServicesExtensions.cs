@@ -91,5 +91,18 @@ namespace dbContaLibrary
             services.AddScoped<ILibro, Libro>();
             return services;
         }
+
+        public static IServiceCollection AddUsuario (this IServiceCollection services) 
+        {
+            services.AddScoped<IUsuario, Usuario>();
+            return services;
+        }
+
+        public static IServiceCollection AddRoles (this IServiceCollection services) 
+        {
+
+            services.AddScoped<IRoles,Roles>();
+            return services;
+        }
     }
 }

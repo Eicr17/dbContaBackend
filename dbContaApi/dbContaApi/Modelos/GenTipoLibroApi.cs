@@ -8,5 +8,6 @@
         public  string usuario { get; set; }
         public int aniolibro { get; set; }
         public int meslibro { get; set; }
+        public int idlibro { get; set; }
     }
 }

@@ -34,11 +34,10 @@ namespace dbContaLibrary.Servicios
                 cmd.Parameters.Add(":Usuario", item.Usuario);
                 cmd.Parameters.Add(":AnioLibro", item.AnioLibro);
                 cmd.Parameters.Add(":MesLibro", item.MesLibro);
+                cmd.Parameters.Add(":IdLibro", item.IdLibro);
+                 
                 cmd.ExecuteNonQuery();
             }
-
-        
-        
         }
     }
 }

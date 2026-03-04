@@ -307,6 +307,32 @@
   },
   {
     "ContainingType": "dbContaApi.Controllers.LibroController",
+    "Method": "Eliminar",
+    "RelativePath": "api/Libro/Eliminar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pIdLibro",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pIdEmpresa",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pIdTipoLibro",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.LibroController",
     "Method": "Get",
     "RelativePath": "api/Libro/Obtener",
     "HttpMethod": "GET",
@@ -317,8 +343,39 @@
   },
   {
     "ContainingType": "dbContaApi.Controllers.LibroDetalleController",
+    "Method": "Eliminar",
+    "RelativePath": "api/LibroDetalle/Eliminar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pIdLibroDetale",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pIdLibro",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.LibroDetalleController",
     "Method": "GetLibroDetalle",
     "RelativePath": "api/LibroDetalle/Obtener",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.RolesController",
+    "Method": "Get",
+    "RelativePath": "api/Roles/Obtener",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -493,6 +550,64 @@
     "ContainingType": "dbContaApi.Controllers.TipoLibroController",
     "Method": "Get",
     "RelativePath": "api/TipoLibro/Get",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.UsuarioController",
+    "Method": "Actualizar",
+    "RelativePath": "api/Usuario/Actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.UsuarioApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.UsuarioController",
+    "Method": "Eliminar",
+    "RelativePath": "api/Usuario/Eliminar/{pId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.UsuarioController",
+    "Method": "Insertar",
+    "RelativePath": "api/Usuario/Insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "dbContaApi.Modelos.UsuarioApi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dbContaApi.Controllers.UsuarioController",
+    "Method": "Get",
+    "RelativePath": "api/Usuario/Obtener",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

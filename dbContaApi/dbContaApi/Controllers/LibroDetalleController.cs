@@ -12,14 +12,14 @@ namespace dbContaApi.Controllers
     {
         private readonly ILibroDetalle _librodetalleServices;
 
-        public LibroDetalleController(ILibroDetalle detallelibroServices) 
+        public LibroDetalleController(ILibroDetalle detallelibroServices)
         {
             _librodetalleServices = detallelibroServices;
         }
 
         [HttpGet]
         [Route("Obtener")]
-        public IActionResult GetLibroDetalle() 
+        public IActionResult GetLibroDetalle()
         {
             var lstLbDet = new List<LibroDetalleApi>();
             var resp = new ApiRespuestaListado<LibroDetalleApi>();
@@ -51,10 +51,27 @@ namespace dbContaApi.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+
+            }
+        }
+
+        [HttpPut]
+        [Route("Eliminar")]
+        public IActionResult Eliminar(int pIdLibroDetale, int pIdLibro) 
+        {
+            var resp = new ApiRespuesta();
+            try
+            {
+                _librodetalleServices.Eliminar(pIdLibroDetale, pIdLibro);
+                resp.exitosa = true;
+                resp.mensaje = "se ha eliminado el registro";
+                return Ok(resp);
                 
             }
-        
-        
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         
         }
 

@@ -10,6 +10,8 @@ namespace dbContaLibrary.Interfaces
     public interface ILibroDetalle
     {
         public IEnumerable<MdlLibroDetalle> Obtener();
+        public void Eliminar(int pIdlibroDetalle, int pIdLibro);
+
 
     }
 }

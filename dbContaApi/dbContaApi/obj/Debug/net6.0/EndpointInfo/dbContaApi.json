@@ -532,10 +532,90 @@
         }
       }
     },
+    "/api/Libro/Eliminar": {
+      "put": {
+        "tags": [
+          "Libro"
+        ],
+        "parameters": [
+          {
+            "name": "pIdLibro",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pIdEmpresa",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pIdTipoLibro",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/LibroDetalle/Obtener": {
       "get": {
         "tags": [
           "LibroDetalle"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/LibroDetalle/Eliminar": {
+      "put": {
+        "tags": [
+          "LibroDetalle"
+        ],
+        "parameters": [
+          {
+            "name": "pIdLibroDetale",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pIdLibro",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Roles/Obtener": {
+      "get": {
+        "tags": [
+          "Roles"
         ],
         "responses": {
           "200": {
@@ -835,6 +915,103 @@
         }
       }
     },
+    "/api/Usuario/Obtener": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuario/Insertar": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioApi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioApi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioApi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuario/Actualizar": {
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioApi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioApi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioApi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuario/Eliminar/{pId}": {
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "pId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -1061,6 +1238,10 @@
           "meslibro": {
             "type": "integer",
             "format": "int32"
+          },
+          "idlibro": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1155,6 +1336,36 @@
             "nullable": true
           },
           "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuariocreacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechacreacion": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsuarioApi": {
+        "type": "object",
+        "properties": {
+          "idusuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreusuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
             "type": "string",
             "nullable": true
           },

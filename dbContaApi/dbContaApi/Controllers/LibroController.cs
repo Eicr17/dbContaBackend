@@ -58,8 +58,31 @@ namespace dbContaApi.Controllers
                 return BadRequest(ex.Message);
                
             }
-           
-
         }
+
+
+        [HttpPut]
+        [Route("Eliminar")]
+        public IActionResult Eliminar(int pIdLibro, int pIdEmpresa, int pIdTipoLibro) 
+        {
+            var resp = new ApiRespuesta();
+
+            try
+            {
+                _libroServices.Eliminar(pIdLibro,pIdEmpresa,pIdTipoLibro);
+                resp.exitosa = true;
+                resp.mensaje = "Se ha eliminado exitosamente";
+                return Ok(resp);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+                
+            }
+        
+        }
+
     }
+
+  
 }

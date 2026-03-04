@@ -31,6 +31,9 @@ builder.Services.AddDtDetalle();
 builder.Services.AddGenTipoLibro();
 builder.Services.AddLibroDetalle();
 builder.Services.AddLibro();
+builder.Services.AddUsuario();
+builder.Services.AddRoles();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
