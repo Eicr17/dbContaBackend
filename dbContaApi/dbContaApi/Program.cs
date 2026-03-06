@@ -41,6 +41,17 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+var origenesPermitidos = builder.Configuration.GetValue<string>("OrigenesPermitidos")!.Split(",");
+
+builder.Services.AddCors(opciones =>
+{
+    opciones.AddDefaultPolicy(politica =>
+    {
+        politica.WithOrigins(origenesPermitidos).AllowAnyHeader().AllowAnyHeader();
+    }
+    );
+});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -49,6 +60,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+
+app.UseCors();
 
 app.MapControllers();
 
