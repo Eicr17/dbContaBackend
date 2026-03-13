@@ -20,7 +20,7 @@ namespace dbContaLibrary.Servicios
         {
             _config = pConfig;
         }
-        public List<MdlArticulo> Get() 
+        public IEnumerable<MdlArticulo> Get() 
         {
             using (var con = new OracleConnection(_config.CadenaConexion))
             {

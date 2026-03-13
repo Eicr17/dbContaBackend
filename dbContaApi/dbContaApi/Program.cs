@@ -39,8 +39,6 @@ builder.Services.AddRolUsuario();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
 var origenesPermitidos = builder.Configuration.GetValue<string>("OrigenesPermitidos")!.Split(",");
 
 builder.Services.AddCors(opciones =>
@@ -51,6 +49,10 @@ builder.Services.AddCors(opciones =>
     }
     );
 });
+
+
+var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

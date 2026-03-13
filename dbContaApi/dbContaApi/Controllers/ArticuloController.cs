@@ -27,7 +27,7 @@ namespace dbContaApi.Controllers
             try
             {
                 var lstArticuloGet = _articuloservice.Get();
-                lstArticuloGet.ForEach(
+                lstArticuloGet.ToList().ForEach(
                     art =>
                     {
                         lstArticulo.Add(
