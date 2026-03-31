@@ -12,7 +12,7 @@ namespace dbContaLibrary.Interfaces
         public IEnumerable<MdlArticulo> Get();
         public void InsertarArticulo(MdlArticuloCrear item);
         public void ActualizarArticulo(MdlArticuloActualizar item);
-        public void Eliminar(int pId);
+        public void Eliminar(int pIdArt, int pIdTpArt);
 
 
     }

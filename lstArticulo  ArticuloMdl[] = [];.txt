@@ -1,0 +1,39 @@
+lstArticulo : ArticuloMdl[] = [];
+
+  constructor( private _srvArticulo: ArticuloService)
+  {
+  }
+
+  ngOnInit()
+  {
+      this.getArticulo();
+
+  }
+
+  
+  getArticulo()
+  {
+      this._srvArticulo.getArticulo()
+      .pipe(
+        catchError((error: HttpErrorResponse)=>{
+          console.log(error);
+          alert(error.message);
+          throw error;
+        })
+      )
+      .subscribe((resp) => {
+        console.log(resp);
+        this.lstArticulo = resp.datos;
+      })
+
+  }
+
+ArticuloDelete(id: number) {
+    this._srvArticulo.EliminarArticulo(id).subscribe({
+      next: () => {
+        console.log('Usuario eliminado');
+       this.getArticulo();
+      },
+      error: (err) => console.error(err)
+    });
+  }

@@ -29,7 +29,7 @@ namespace dbContaLibrary.Servicios
 
                 var cmd = new OracleCommand();
                 cmd.Connection = con;
-                cmd.CommandText = "Select Id_Tipo_Articulo, Nombre, Descripcion, Fecha_Creacion, Usuario_Creacion from Tipo_Articulo";
+                cmd.CommandText = "Select Id_Tipo_Articulo, Nombre from Tipo_Articulo";
 
                 using(IDataReader dr = cmd.ExecuteReader()) 
                 {
@@ -38,9 +38,9 @@ namespace dbContaLibrary.Servicios
                         var item = new MdlTipoArticulo();
                         item.IdTipoArticulo = int.Parse(dr.GetValue(0).ToString());
                         item.Nombre = dr.GetValue(1).ToString();
-                        item.Descripcion = dr.GetValue(2).ToString();
-                        item.FechaCreacion = DateTime.Parse(dr.GetValue(3).ToString());
-                        item.UsuarioCreacion = dr.GetValue(4).ToString();
+                        //item.Descripcion = dr.GetValue(2).ToString();
+                        //item.FechaCreacion = DateTime.Parse(dr.GetValue(3).ToString());
+                        //item.UsuarioCreacion = dr.GetValue(4).ToString();
                         lst.Add(item);
                  }
 

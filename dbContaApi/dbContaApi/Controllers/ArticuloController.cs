@@ -38,6 +38,7 @@ namespace dbContaApi.Controllers
                                 nombre = art.Nombre,
                                 descripcion = art.Descripcion,
                                 usuarioCreacion = art.UsuarioCreacion,
+                                fechaCreacion = art.FechaCreacion
                             }
                         );
 
@@ -95,6 +96,7 @@ namespace dbContaApi.Controllers
             var tpArticuloAct = new MdlArticuloActualizar();
             try
             {
+                tpArticuloAct.IdArticulo = item.idArticulo;
                 tpArticuloAct.IdTipoArticulo = item.idTipoArticulo;
                 tpArticuloAct.Nombre = item.nombre;
                 tpArticuloAct.Descripcion = item.descripcion;
@@ -112,14 +114,14 @@ namespace dbContaApi.Controllers
         }
 
 
-        [HttpPut]
-        [Route("Eliminar/{pId}")]
-        public IActionResult Eliminar(int pId) 
+        [HttpDelete]
+        [Route("Eliminar/{pIdArt}/{pIdTpArt}")]
+        public IActionResult Eliminar(int pIdArt, int pIdTpArt) 
         {
             var resp = new ApiRespuesta();
             try
             {
-                _articuloservice.Eliminar(pId);
+                _articuloservice.Eliminar(pIdArt, pIdTpArt);
                 resp.exitosa = true;
                 resp.mensaje = "Se ha eliminado exitosamente el registro";
                 return Ok(resp);

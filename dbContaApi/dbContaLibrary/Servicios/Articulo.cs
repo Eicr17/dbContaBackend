@@ -77,6 +77,8 @@ namespace dbContaLibrary.Servicios
                 con.Open();
                 var cmd = new OracleCommand();
                 cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "DBCONTA.PRC_GRABAR_ARTICULO";
                 cmd.Parameters.Add(":id", item.IdArticulo);
                 cmd.Parameters.Add(":idtp", item.IdTipoArticulo);
                 cmd.Parameters.Add(":nombre", item.Nombre);
@@ -88,7 +90,7 @@ namespace dbContaLibrary.Servicios
         
         }
 
-        public void Eliminar(int pId) 
+        public void Eliminar(int pIdArt,  int pIdTpArt) 
         {
 
             using (var con = new OracleConnection(_config.CadenaConexion)) 
@@ -98,7 +100,9 @@ namespace dbContaLibrary.Servicios
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "DBCONTA.PRC_ELIMINAR_ARTICULO";
-                cmd.Parameters.Add(":id", OracleDbType.Int64).Value = pId;
+                cmd.Parameters.Add(":idArt", OracleDbType.Int64).Value = pIdArt;
+                cmd.Parameters.Add(":idTpArt", OracleDbType.Int64).Value = pIdTpArt;
+
                 cmd.ExecuteNonQuery();
            
             }

@@ -1,0 +1,39 @@
+<div class="container">
+<h1 class="text-center">Articulos</h1>
+<button class="btn btn-primary ">Agregar Articulo</button>
+<div class="col-12 mt-3"> 
+<table class="table table-bordered border-dark table-hover text-center"> 
+    <thead class="table-dark">
+        <tr>
+        <th>Articulo</th>
+        <th>TipoArticulo</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>FechaCreacion</th>
+        <th >Opciones</th>
+        </tr>
+   
+    </thead>
+
+    <tbody>
+            @for(item of lstArticulo; track item.idArticulo){
+
+            <tr>
+                <td>{{item.idArticulo}}</td>
+                <td>{{item.idTipoArticulo}}</td>
+                <td>{{item.nombre}}</td>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.fechaCreacion | date:'MM/dd/yyyy'}}</td>
+                <td>
+                    <button  class="btn btn-danger me-2">Eliminar</button>
+                    <button class="btn btn-primary">Editar</button>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>
+</div>
+
+</div>

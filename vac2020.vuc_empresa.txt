@@ -1,0 +1,28 @@
+vac2020.vuc_empresa
+DPI
+varchar2 230
+
+
+representates lesgales
+
+
+Segudo Nombre quitar que se requiera ponerlos
+Segundo Apellido quitar que se requiera ponerlos
+
+formvista
+?id=1124
+
+
+Datos de la empresa
+dashborad-perfil-component.html
+
+rama correcta
+app custom input
+
+
+	$nit: {
+			...generateInputLabel('$nit', '', true, [nitValidator]),
+			_classes: {
+				_colClass: 'col-md-6 form-group mb-3'
+			}
+		},

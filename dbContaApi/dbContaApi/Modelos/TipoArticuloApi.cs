@@ -6,6 +6,6 @@
         public string nombre { get; set; }
         public string descripcion { get; set; }
         public DateTime fechaCreacion { get; set; }
-        public string usuarioCreacion { get; set;}
+        public string usuarioCreacion { get; set; }
     }
 }

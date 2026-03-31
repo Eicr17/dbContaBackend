@@ -12,7 +12,7 @@ namespace dbContaLibrary.Interfaces
         public List<MdlTipoArticulo> GetList();
         public void InsertarTpArticulo(MdlTipoArticuloCrear item);
         public void ActualizarTpDoc(MdlTipoArticuloAct item);
-        public void Eliminar(int pId);
+        public void Eliminar(int pIdTpArt);
 
 
 

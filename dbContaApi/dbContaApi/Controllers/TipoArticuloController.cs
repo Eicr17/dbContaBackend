@@ -36,9 +36,9 @@ namespace dbContaApi.Controllers
                             {
                                     idtipoArticulo  = art.IdTipoArticulo,
                                     nombre = art.Nombre,
-                                    descripcion = art.Descripcion,
-                                    fechaCreacion = art.FechaCreacion,
-                                    usuarioCreacion = art.UsuarioCreacion
+                                    //descripcion = art.Descripcion,
+                                    //fechaCreacion = art.FechaCreacion,
+                                    //usuarioCreacion = art.UsuarioCreacion
                             }
                         );
                     }
@@ -111,16 +111,16 @@ namespace dbContaApi.Controllers
 
 
         }
-        [HttpPut]
-        [Route("Eliminar/{pId}")]
-        public IActionResult Eliminar(int pId)
+        [HttpDelete]
+        [Route("Eliminar/{pIdArt}")]
+        public IActionResult Eliminar(int pIdArt, int pIdTpArt)
         {
 
             var resp = new ApiRespuesta();
 
             try
             {
-                _tipoarticuloservice.Eliminar(pId);
+                _tipoarticuloservice.Eliminar(pIdTpArt);
                 resp.exitosa = true;
                 resp.mensaje = "El Registro a sido eliminado";
                 return Ok(resp);

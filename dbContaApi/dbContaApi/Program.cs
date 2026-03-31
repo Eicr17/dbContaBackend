@@ -38,20 +38,15 @@ builder.Services.AddRolUsuario();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-var origenesPermitidos = builder.Configuration.GetValue<string>("OrigenesPermitidos")!.Split(",");
-
-builder.Services.AddCors(opciones =>
-{
-    opciones.AddDefaultPolicy(politica =>
+builder.Services.AddCors(
+    options =>
     {
-        politica.WithOrigins(origenesPermitidos).AllowAnyHeader().AllowAnyHeader();
-    }
-    );
-});
+        options.AddPolicy("AllowAngularOrigins", builder => { builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod(); });
+    });
 
 
 var app = builder.Build();
+app.UseCors("AllowAngularOrigins");
 
 
 // Configure the HTTP request pipeline.

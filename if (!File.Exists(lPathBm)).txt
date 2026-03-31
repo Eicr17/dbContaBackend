@@ -1,0 +1,63 @@
+    if (!File.Exists(lPathBm))
+    {
+        Console.SetCursorPosition(20, 10);
+        Console.WriteLine("El Archivo no Existe");
+        Console.ReadKey();
+    }
+
+    Console.Clear();
+
+    Console.SetCursorPosition(0, 2);
+    Console.WriteLine(string.Concat(Enumerable.Repeat("=", 115)));
+
+    Console.SetCursorPosition(45, 3);
+    Console.WriteLine("DATOS GENERALES");
+
+    Console.SetCursorPosition(0, 4);
+    Console.WriteLine(string.Concat(Enumerable.Repeat("=", 115)));
+
+    Console.SetCursorPosition(5, 5); Console.Write("ID");
+    Console.SetCursorPosition(20, 5); Console.Write("Nombre");
+    Console.SetCursorPosition(40, 5); Console.Write("Direccion");
+    Console.SetCursorPosition(65, 5); Console.Write("Edad");
+    Console.SetCursorPosition(75, 5); Console.Write("Carrera");
+    Console.SetCursorPosition(95, 5); Console.Write("Semestre");
+
+
+    Console.SetCursorPosition(0, 6);
+    Console.WriteLine(string.Concat(Enumerable.Repeat("=", 115)));
+
+
+    string[] ContenidoArchivo = File.ReadAllLines(lPathBm);
+    string[] Campos;
+
+    int fila = 7;
+
+
+    foreach (var item in ContenidoArchivo)
+    {
+        Campos = item.Split('|');
+
+        if (Campos.Length == 6)
+        {
+            Console.SetCursorPosition(5, fila); Console.Write(Campos[0]);
+            Console.SetCursorPosition(20, fila); Console.Write(Campos[1]);
+            Console.SetCursorPosition(40, fila); Console.Write(Campos[2]);
+            Console.SetCursorPosition(65, fila); Console.Write(Campos[3]);
+            Console.SetCursorPosition(75, fila); Console.Write(Campos[4]);
+            Console.SetCursorPosition(95, fila); Console.Write(Campos[5]);
+
+            fila++;
+        }
+    }
+
+    Console.SetCursorPosition(0, fila + 1);
+    Console.WriteLine(string.Concat(Enumerable.Repeat("=", 115)));
+
+    Console.SetCursorPosition(35, fila + 3);
+    Console.WriteLine("Presione una tecla para continuar...");
+    Console.ReadKey();
+}
+
+
+Dh
