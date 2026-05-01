@@ -21,13 +21,23 @@ namespace dbContaApi.Controllers
 
         [HttpGet]
         [Route("Obtener")]
-        public IActionResult GetDocumentoeDetalle()
+        public IActionResult GetDocumentoeDetalle(string? pCriterioBusqueda  = null)
         {
             var resp = new ApiRespuestaListado<DocumentoDetalleApi>();
             var lstDocDetalle = new List<DocumentoDetalleApi>();
+
+            int idDocDet = 0;
+            string numero = "";
+
             try
             {
-                var lstDtDoc = _documentoDetalleService.Get();
+
+                if (!int.TryParse(pCriterioBusqueda, out idDocDet))
+                {
+                    numero = pCriterioBusqueda;
+                }
+
+                var lstDtDoc = _documentoDetalleService.Get(idDocDet,numero);
                 lstDtDoc.ToList().ForEach(
                     dtDoc =>
                     {
@@ -61,19 +71,18 @@ namespace dbContaApi.Controllers
 
         [HttpPost]
         [Route("Insertar")]
-        public IActionResult Insertar([FromBody] DocumentoDetalleApi pRequest)
+        public IActionResult Insertar([FromBody] DtoDocumentoDetInsertar pRequest)
         {
               var InDtDocumento = new MdlDocumentoDetalleCrear();
             try
             {
-                InDtDocumento.IdDocumentoDetalle = pRequest.idDocumentoDetalle;
                 InDtDocumento.Numero = pRequest.numero;
                 InDtDocumento.Serie = pRequest.serie;
                 InDtDocumento.TipoDocumento = pRequest.tipodocumento;
                 InDtDocumento.IdArticulo = pRequest.idArticulo;
                 InDtDocumento.Cantidad = pRequest.cantidad;
                 InDtDocumento.Precio = pRequest.precio;
-                InDtDocumento.UsuarioCreacion = pRequest.usuariocreacion;
+                InDtDocumento.UsuarioCreacion = "Admin";
                 _documentoDetalleService.Insertar(InDtDocumento);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a insertado el  registro exitosamente";
@@ -85,7 +94,7 @@ namespace dbContaApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("Actualizar")]
         public IActionResult Actualizar([FromBody] DocumentoDetalleApi pRequest) 
         {
@@ -99,7 +108,7 @@ namespace dbContaApi.Controllers
                 AcDocDt.IdArticulo = pRequest.idArticulo;
                 AcDocDt.Cantidad = pRequest.cantidad;
                 AcDocDt.Precio = pRequest.precio;
-                AcDocDt.UsuarioCreacion = pRequest.usuariocreacion;
+                AcDocDt.UsuarioCreacion = "Admin";
                 _documentoDetalleService.Actualizar(AcDocDt);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a actualizado el documento detalle";
@@ -113,7 +122,7 @@ namespace dbContaApi.Controllers
         
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route("Eliminar/{pId}")]
         public IActionResult Eliminar(int pId) 
         {

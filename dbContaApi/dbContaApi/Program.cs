@@ -1,6 +1,14 @@
+using dbContaApi.Servicios;
 using dbContaLibrary;
 using dbContaLibrary.Interfaces;
 using dbContaLibrary.Servicios;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using NLog;
+using NLog.Web;
+using Oracle.ManagedDataAccess.Client;
+using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration
@@ -14,6 +22,24 @@ builder.Services
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     });
+
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["JWT:Issuer"],
+        ValidAudience = builder.Configuration["JWT:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+    };
+});
+
 
 // Add services to the container.
 var configuration = builder.Configuration;
@@ -34,6 +60,12 @@ builder.Services.AddLibro();
 builder.Services.AddUsuario();
 builder.Services.AddRoles();
 builder.Services.AddRolUsuario();
+builder.Services.AddLogin();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ObtenerInformacionToken>();
+
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -52,13 +84,13 @@ app.UseCors("AllowAngularOrigins");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseCors();
 
 app.MapControllers();
 

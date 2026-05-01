@@ -60,17 +60,15 @@ namespace dbContaApi.Controllers
 
         [HttpPost]
         [Route("Insertar")]
-        public IActionResult Insertar([FromBody] RolUsuarioApi pRequest)
+        public IActionResult Insertar([FromBody] DtoRolUsuarioInsertar pRequest)
         {
-            var lstRolUsuario = new MdlRolUsuarioInsertar();
+            var RolUsuario = new MdlRolUsuarioInsertar();
             try
             {
-
-                lstRolUsuario.IdRolUsuario = pRequest.idrolusuario;
-                lstRolUsuario.IdRol = pRequest.idrol;
-                lstRolUsuario.IdUsuario = pRequest.idusuario;
-                lstRolUsuario.UsuarioCreacion = pRequest.usuariocreacion;
-                _rolservices.Insertar(lstRolUsuario);
+                RolUsuario.IdRol = pRequest.idrol;
+                RolUsuario.IdUsuario = pRequest.idusuario;
+                RolUsuario.UsuarioCreacion = "Admin";
+                _rolservices.Insertar(RolUsuario);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a registrado el registro exitosamente";
                 return Ok(resp);
@@ -84,20 +82,20 @@ namespace dbContaApi.Controllers
 
 
 
-        [HttpPut]
+        [HttpPost]
         [Route("Actualizar")]
-        public IActionResult Actualizar([FromBody] RolUsuarioApi pRequest)
+        public IActionResult Actualizar([FromBody] DtoRolUsuarioActualizar pRequest)
         {
-            var lsActRolUsuario = new MdlRolUsuarioActualizar();
+            var ActRolUsuario = new MdlRolUsuarioActualizar();
             try
             {
-                lsActRolUsuario.IdRolUsuario = pRequest.idrolusuario;
-                lsActRolUsuario.IdRol = pRequest.idrol;
-                lsActRolUsuario.IdUsuario = pRequest.idusuario;
-                lsActRolUsuario.UsuarioCreacion = pRequest.usuariocreacion;
-                _rolservices.Actualizar(lsActRolUsuario);
+                ActRolUsuario.IdRolUsuario = pRequest.idrolusuario;
+                ActRolUsuario.IdRol = pRequest.idrol;
+                ActRolUsuario.IdUsuario = pRequest.idusuario;
+                ActRolUsuario.UsuarioCreacion = "Admin";
+                _rolservices.Actualizar(ActRolUsuario);
                 var resp = new MdlMensajeRep();
-                resp.mensaje_exitoso = "Se a  actualizado exitosamente";
+                resp.mensaje_exitoso = "Se a actualizado exitosamente";
                 return Ok(resp);
 
             }
@@ -111,7 +109,7 @@ namespace dbContaApi.Controllers
 
 
 
-        [HttpPut]
+        [HttpDelete]
         [Route("Eliminar/{pId}")]
         public IActionResult Eliminar(int pId)
         {

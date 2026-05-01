@@ -112,5 +112,12 @@ namespace dbContaLibrary
             services.AddScoped<IRolUsuario, RolUsuario>();
             return services;
         }
+
+        public static IServiceCollection AddLogin(this IServiceCollection services)
+        {
+
+            services.AddScoped<ILogin, Login>();
+            return services;
+        }
     }
 }

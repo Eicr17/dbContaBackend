@@ -22,7 +22,7 @@ namespace dbContaLibrary.Servicios
 
         public IEnumerable<MdlCatDocumento> GetList() 
         {
-
+            
             using (var con = new OracleConnection(_config.CadenaConexion)) 
             {
                 var lst = new List<MdlCatDocumento>();

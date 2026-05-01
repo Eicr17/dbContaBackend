@@ -19,14 +19,22 @@ namespace dbContaApi.Controllers
 
         [HttpGet]
         [Route("Get")]
-        public IActionResult Get() 
+        public IActionResult Get(string? pBusqueda = null) 
         {
+            int idtpArt = 0;
+            string Nombre = "";
             var resp = new ApiRespuestaListado<TipoArticuloApi>();
             var lstTipoArticulo = new List<TipoArticuloApi>();
 
             try
             {
-                var lstTpArticuloGet = _tipoarticuloservice.GetList();
+                if (!int.TryParse(pBusqueda, out  idtpArt))
+                {
+                    Nombre = pBusqueda;
+                }
+
+
+                var lstTpArticuloGet = _tipoarticuloservice.GetList(idtpArt,Nombre);
                 lstTpArticuloGet.ForEach(
                     art =>
                     {
@@ -36,9 +44,9 @@ namespace dbContaApi.Controllers
                             {
                                     idtipoArticulo  = art.IdTipoArticulo,
                                     nombre = art.Nombre,
-                                    //descripcion = art.Descripcion,
-                                    //fechaCreacion = art.FechaCreacion,
-                                    //usuarioCreacion = art.UsuarioCreacion
+                                    descripcion = art.Descripcion,
+                                    fechaCreacion = art.FechaCreacion,
+                                    usuarioCreacion = art.UsuarioCreacion
                             }
                         );
                     }
@@ -53,7 +61,6 @@ namespace dbContaApi.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-                throw;
             }
         
         }
@@ -61,16 +68,15 @@ namespace dbContaApi.Controllers
         [HttpPost]
         [Route("Insertar")]
 
-        public IActionResult InsertarTpArticulo([FromBody] TipoArticuloApi pRequest) 
+        public IActionResult InsertarTpArticulo([FromBody] DtoTipoArticuloInsertar pRequest) 
         {
-            var lstTpArticuloInsert = new MdlTipoArticuloCrear();
+            var TpArticuloInsert = new MdlTipoArticuloCrear();
             try
             {
-                lstTpArticuloInsert.IdTipoArticulo = pRequest.idtipoArticulo;
-                lstTpArticuloInsert.Nombre = pRequest.nombre;
-                lstTpArticuloInsert.Descripcion = pRequest.descripcion;
-                lstTpArticuloInsert.UsuarioCreacion = pRequest.usuarioCreacion;
-                _tipoarticuloservice.InsertarTpArticulo(lstTpArticuloInsert);
+                TpArticuloInsert.Nombre = pRequest.nombre;
+                TpArticuloInsert.Descripcion = pRequest.descripcion;
+                TpArticuloInsert.UsuarioCreacion = "";
+                _tipoarticuloservice.InsertarTpArticulo(TpArticuloInsert);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "La insesrsion ha sido exitosa";
                 return Ok(resp);
@@ -85,9 +91,9 @@ namespace dbContaApi.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPost]
         [Route("Actualizar")]
-        public IActionResult Actualizar([FromBody] TipoArticuloApi pRequest)
+        public IActionResult Actualizar([FromBody] DtoTipoArticuloActualizar pRequest)
         {
             var TpArtActualizaicon = new MdlTipoArticuloAct();
 
@@ -96,7 +102,7 @@ namespace dbContaApi.Controllers
                 TpArtActualizaicon.IdTipoArticulo = pRequest.idtipoArticulo;
                 TpArtActualizaicon.Nombre = pRequest.nombre;
                 TpArtActualizaicon.Descripcion = pRequest.descripcion;
-                TpArtActualizaicon.UsuarioCreacion = pRequest.usuarioCreacion;
+                TpArtActualizaicon.UsuarioCreacion = "Admin";
                 _tipoarticuloservice.ActualizarTpDoc(TpArtActualizaicon);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "La Actualizacion ha sido exitosa";
@@ -112,8 +118,8 @@ namespace dbContaApi.Controllers
 
         }
         [HttpDelete]
-        [Route("Eliminar/{pIdArt}")]
-        public IActionResult Eliminar(int pIdArt, int pIdTpArt)
+        [Route("Eliminar/{pIdTpArt}")]
+        public IActionResult Eliminar(int pIdTpArt)
         {
 
             var resp = new ApiRespuesta();

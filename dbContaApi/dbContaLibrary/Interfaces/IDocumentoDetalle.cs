@@ -9,7 +9,7 @@ namespace dbContaLibrary.Interfaces
 {
     public interface IDocumentoDetalle
     {
-        public IEnumerable<MdlDocumentoDetalle> Get();
+        public IEnumerable<MdlDocumentoDetalle> Get(int idDocDet, string numero);
         public void Insertar(MdlDocumentoDetalleCrear item);
         public void Actualizar(MdlDtDocumentoActualizar item);
         public void Eliminar(int pId);

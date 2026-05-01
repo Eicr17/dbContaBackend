@@ -63,16 +63,15 @@ namespace dbContaApi.Controllers
 
         [HttpPost]
         [Route("Insertar")]
-        public IActionResult Insertar([FromBody] TipoDocumentoApi pRequest) 
+        public IActionResult Insertar([FromBody] DtoTipoDocumentoInsertar pRequest) 
         {
             var TpDocumentoActuzlicar = new MdlTipoDocCrear();
 
             try
             {
-                TpDocumentoActuzlicar.IdTipoDocumento = pRequest.idtipodocumento;
                 TpDocumentoActuzlicar.Nombre = pRequest.nombre;
                 TpDocumentoActuzlicar.Descripcion = pRequest.descripcion;
-                TpDocumentoActuzlicar.UsuarioCreacion = pRequest.usuariocreacion;
+                TpDocumentoActuzlicar.UsuarioCreacion = "Admin";
                 TpDocumentoActuzlicar.IdCategoriaDocumento = pRequest.idcategoriadocumento;
                 _tipoDocumentoService.InsertarTipoDoc(TpDocumentoActuzlicar);
                 var resp = new MdlMensajeRep();
@@ -89,9 +88,9 @@ namespace dbContaApi.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPost]
         [Route("Actualizar")]
-        public IActionResult Actualizar([FromBody] TipoDocumentoApi item) 
+        public IActionResult Actualizar([FromBody] DtoTipoDocumentoActualizar item) 
         {
             var TpLibroActualizacion = new MdlTpDocActualizar();
             try
@@ -99,7 +98,7 @@ namespace dbContaApi.Controllers
                 TpLibroActualizacion.IdTipoDocumento = item.idtipodocumento;
                 TpLibroActualizacion.Nombre = item.nombre;
                 TpLibroActualizacion.Descripcion = item.descripcion;
-                TpLibroActualizacion.UsuarioCreacion = item.usuariocreacion;
+                TpLibroActualizacion.UsuarioCreacion = "Admin";
                 TpLibroActualizacion.IdCategoriaDocumento = item.idcategoriadocumento;
                 _tipoDocumentoService.ActualizarTpDoc(TpLibroActualizacion);
                 var resp = new MdlMensajeRep();
@@ -116,7 +115,7 @@ namespace dbContaApi.Controllers
         
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route("Eliminar/{pId}")]
         public IActionResult Eliminar(int pId) 
         {

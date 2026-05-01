@@ -26,7 +26,7 @@ namespace dbContaApi.Controllers
                 GenTpLibro.Folio = pRequest.folio;
                 GenTpLibro.Empresa = pRequest.empresa;
                 GenTpLibro.TipoLibro = pRequest.tipolibro;
-                GenTpLibro.Usuario = pRequest.usuario;
+                GenTpLibro.Usuario = "Admin";
                 GenTpLibro.AnioLibro = pRequest.aniolibro;
                 GenTpLibro.MesLibro = pRequest.meslibro;
                 GenTpLibro.IdLibro = pRequest.idlibro;

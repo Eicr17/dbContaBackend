@@ -19,14 +19,27 @@ namespace dbContaLibrary.Servicios
             _config = pConfig;
         }
 
-        public IEnumerable<MdlDocumento> GetDoc() 
+        public IEnumerable<MdlDocumento> GetDoc(string pCriterio) 
         {
-            using(var con = new OracleConnection(_config.CadenaConexion)) 
+            using (var con = new OracleConnection(_config.CadenaConexion))
             {
                 con.Open();
                 var lstDocumento = new List<MdlDocumento>();
-                var cmd = new OracleCommand("Select  Numero,Serie,Tipo_Documento,Id_Empresa, Fecha, Monto, Usuario_Creacion,Fecha_Expiracion,Fecha_Creacion from Documento");
+                string cadena = "Select  Numero,Serie,Tipo_Documento,Id_Empresa, Fecha, Monto, Usuario_Creacion,Fecha_Expiracion,to_char(Fecha_Creacion, 'DD/MM/YYYY') from Documento";
+
+
+                if (!string.IsNullOrEmpty(pCriterio))
+                {
+                    cadena += @$" WHERE ( upper(trim(Numero)) like '%{pCriterio.ToUpper().Trim()}%' OR
+                                        upper(trim(Serie)) like '%{pCriterio.ToUpper().Trim()}%' OR
+                                        to_char(id_empresa) = '{pCriterio}' OR
+                                        to_char(fecha_creacion,'DDMMYYYY') like '{pCriterio.Replace("/", "")}%'
+                                        )";
+                }                  
+
+                var cmd = new OracleCommand(cadena);
                 cmd.Connection = con;
+
 
                 using ( var dr = cmd.ExecuteReader()) 
                 {
@@ -37,11 +50,11 @@ namespace dbContaLibrary.Servicios
                         item.Serie = dr.GetValue(1).ToString();
                         item.TipoDocumento = int.Parse(dr.GetValue(2).ToString());
                         item.IdEmpresa = int.Parse(dr.GetValue(3).ToString());
-                        item.Fecha = DateTime.Parse(dr.GetValue(4).ToString());
+                        item.Fecha = dr.GetValue(4).ToString();
                         item.Monto = int.Parse(dr.GetValue(5).ToString());
                         item.UsuarioCreacion = dr.GetValue(6).ToString();
-                        item.FechaExpiracion = DateTime.Parse( dr.GetValue(7).ToString());
-                        item.FechaCreacion = DateTime.Parse(dr.GetValue(8).ToString());
+                        item.FechaExpiracion =  dr.GetValue(7).ToString();
+                        item.FechaCreacion = dr.GetValue(8).ToString();
                         lstDocumento.Add(item);
                         
                     }

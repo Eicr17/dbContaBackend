@@ -19,13 +19,27 @@ namespace dbContaLibrary.Servicios
             _config = pconfig;
         }
 
-        public IEnumerable<MdlEmpresa> Get() 
+        public IEnumerable<MdlEmpresa> Get(string pCriterio) 
         {
             using(var con = new OracleConnection(_config.CadenaConexion)) 
             {
                 con.Open();
                 var lst = new List<MdlEmpresa>();
-                var cmd = new OracleCommand("Select Id_Empresa,Nombre,Usuario_Creacion,Fecha_Creacion,Nit from Empresa");
+                DateTime fecha= DateTime.MinValue;
+
+                var cadena = @"Select Id_Empresa,Nombre,Usuario_Creacion,to_char(Fecha_Creacion,'DD/MM/YYYY'),Nit 
+                                from Empresa";
+                
+                if (!string.IsNullOrEmpty(pCriterio))
+                {                    
+                    cadena += @$" WHERE ( upper(trim(nombre)) like '%{pCriterio.ToUpper().Trim()}%' OR
+                                        upper(trim(nit)) like '%{pCriterio.ToUpper().Trim()}%' OR
+                                        to_char(id_empresa) = '{pCriterio}' OR
+                                        to_char(fecha_creacion,'DDMMYYYY') like '{pCriterio.Replace("/","")}%'
+                                        )";
+                }
+
+                var cmd = new OracleCommand(cadena);
                 cmd.Connection = con;
 
                 using(var dr = cmd.ExecuteReader()) 
@@ -36,7 +50,7 @@ namespace dbContaLibrary.Servicios
                         item.IdEmpresa = int.Parse(dr.GetValue(0).ToString());
                         item.Nombre = dr.GetValue(1).ToString();
                         item.UsuarioCreacion = dr.GetValue(2).ToString();
-                        item.FechaCreacion = DateTime.Parse(dr.GetValue(3).ToString());
+                        item.FechaCreacion = dr.GetValue(3).ToString();
                         item.Nit = dr.GetValue(4).ToString();
                         lst.Add(item);
                     }
@@ -76,7 +90,7 @@ namespace dbContaLibrary.Servicios
                 cmd.CommandText = "DBCONTA.PRC_GRABAR_EMPRESA";
                 cmd.Parameters.Add(":id", item.IdEmpresa);
                 cmd.Parameters.Add(":nombre", item.Nombre);
-                cmd.Parameters.Add(":usrc", item.UsuarioCreacion);
+                cmd.Parameters.Add(":usrc", item.Usuario);
                 cmd.Parameters.Add(":nit", item.Nit);
                 cmd.ExecuteNonQuery();
             }

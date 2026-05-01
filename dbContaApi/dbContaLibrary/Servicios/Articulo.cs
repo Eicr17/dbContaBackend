@@ -16,20 +16,32 @@ namespace dbContaLibrary.Servicios
 
         private readonly IAPPConfiguracion _config;
 
-        public Articulo(IAPPConfiguracion pConfig) 
+        public Articulo(IAPPConfiguracion pConfig)
         {
             _config = pConfig;
         }
-        public IEnumerable<MdlArticulo> Get() 
+        public IEnumerable<MdlArticulo> Get(int IdArt, string Nombre)
         {
             using (var con = new OracleConnection(_config.CadenaConexion))
             {
                 con.Open();
                 var lst = new List<MdlArticulo>();
-                var cmd = new OracleCommand("Select Id_Articulo, Id_Tipo_Articulo,Nombre,Descripcion,Usuario_Creacion,Fecha_Creacion from Articulo");
+             
+                string cadena = "select Id_Articulo, Id_Tipo_Articulo,Nombre,Descripcion,Usuario_Creacion,Fecha_Creacion from Articulo Where 1 = 1";
+                if (IdArt != 0 )
+                {
+                    cadena += $"and id_Articulo = {IdArt}";
+                }
+
+                if (!string.IsNullOrEmpty(Nombre))
+                {
+                    cadena += $"and (upper(trim (nombre))  like '%{Nombre.ToUpper().Trim()}%' )";
+                }
+
+                var cmd = new OracleCommand(cadena);
                 cmd.Connection = con;
 
-                using ( IDataReader  dr = cmd.ExecuteReader()) 
+                using (IDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
@@ -37,21 +49,21 @@ namespace dbContaLibrary.Servicios
                         item.IdArticulo = int.Parse(dr.GetValue(0).ToString());
                         item.IdTipoArticulo = int.Parse(dr.GetValue(1).ToString());
                         item.Nombre = dr.GetValue(2).ToString();
-                        item.Descripcion = dr.GetValue(3).ToString();   
+                        item.Descripcion = dr.GetValue(3).ToString();
                         item.UsuarioCreacion = dr.GetValue(4).ToString();
-                        item.FechaCreacion = DateTime.Parse(dr.GetValue(5).ToString());
+                        item.FechaCreacion = dr.GetValue(5).ToString();
                         lst.Add(item);
                     }
                 }
                 return lst;
             }
 
-           
-        
+
+
         }
 
 
-        public void InsertarArticulo(MdlArticuloCrear item) 
+        public void InsertarArticulo(MdlArticuloCrear item)
         {
             using (var con = new OracleConnection(_config.CadenaConexion))
             {
@@ -65,11 +77,11 @@ namespace dbContaLibrary.Servicios
                 cmd.Parameters.Add(":nombre", item.Nombre);
                 cmd.Parameters.Add(":desc", item.Descripcion);
                 cmd.Parameters.Add(":usc", item.UsuarioCreacion);
-                cmd.ExecuteNonQuery();   
+                cmd.ExecuteNonQuery();
             }
         }
 
-        public void ActualizarArticulo(MdlArticuloActualizar item) 
+        public void ActualizarArticulo(MdlArticuloActualizar item)
         {
 
             using (var con = new OracleConnection(_config.CadenaConexion))
@@ -85,15 +97,15 @@ namespace dbContaLibrary.Servicios
                 cmd.Parameters.Add(":desc", item.Descripcion);
                 cmd.Parameters.Add(":usr", item.UsuarioCreacion);
                 cmd.ExecuteNonQuery();
-               
+
             }
-        
+
         }
 
-        public void Eliminar(int pIdArt,  int pIdTpArt) 
+        public void Eliminar(int pIdArt, int pIdTpArt)
         {
 
-            using (var con = new OracleConnection(_config.CadenaConexion)) 
+            using (var con = new OracleConnection(_config.CadenaConexion))
             {
                 con.Open();
                 var cmd = new OracleCommand();
@@ -104,9 +116,9 @@ namespace dbContaLibrary.Servicios
                 cmd.Parameters.Add(":idTpArt", OracleDbType.Int64).Value = pIdTpArt;
 
                 cmd.ExecuteNonQuery();
-           
+
             }
-        
+
         }
 
     }

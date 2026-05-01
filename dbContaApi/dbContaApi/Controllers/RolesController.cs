@@ -63,15 +63,14 @@ namespace dbContaApi.Controllers
 
         [HttpPost]
         [Route("Insertar")]
-        public IActionResult Insertar([FromBody]  RolesApi item) 
+        public IActionResult Insertar([FromBody]  DtoRolesInsertar item) 
         {
             var rolInsertar = new MdlRolesInsertar();
 
             try
             {
-                rolInsertar.IdRol = item.idrol;
                 rolInsertar.NombreRol = item.nombrerol;
-                rolInsertar.UsuarioCreacion = item.usuariocreacion;
+                rolInsertar.UsuarioCreacion = "Admin";
                 _rolesServices.Insertar(rolInsertar);
                 var resp = new ApiRespuesta();
                 resp.mensaje = "Se a insertado el registro exitosamente";
@@ -86,16 +85,16 @@ namespace dbContaApi.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPost]
         [Route("Actualizar")]
-        public IActionResult Actualizar([FromBody] RolesApi item)
+        public IActionResult Actualizar([FromBody] DtoRolesActualizar item)
         {
             var rolActualizar = new MdlRolesActualizar();
             try
             {
                 rolActualizar.IdRol = item.idrol;
                 rolActualizar.NombreRol = item.nombrerol;
-                rolActualizar.UsuarioCreacion = item.usuariocreacion;
+                rolActualizar.UsuarioCreacion = "Admin";
                 _rolesServices.Actualizar(rolActualizar);
                 var resp = new ApiRespuesta();
                 resp.mensaje = "Se a actualizado el registro";
@@ -107,7 +106,7 @@ namespace dbContaApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route("Eliminar/{pId}")]
         public IActionResult Eliminar(int pId)
         {

@@ -22,16 +22,30 @@ namespace dbContaLibrary.Servicios
             _config = pConfig;
         }
         
-        public IEnumerable<MdlDocumentoDetalle> Get() 
+        public IEnumerable<MdlDocumentoDetalle> Get(int idDocDet, string numero) 
         {
             using(var con = new OracleConnection(_config.CadenaConexion))
             {
                 con.Open();
-                var cmd = new OracleCommand("Select id_documento_detalle,Numero,Serie,tipo_documento, id_articulo, cantidad,precio, usuario_creacion from Documento_Detalle");
-                cmd.Connection = con;
-                var lstDocDt = new List<MdlDocumentoDetalle>();
 
-                using(var dr = cmd.ExecuteReader())
+                string cadena = "Select id_documento_detalle,Numero,Serie,tipo_documento, id_articulo, cantidad,precio, usuario_creacion from Documento_Detalle where 1 = 1";
+
+                if (idDocDet != 0)
+                {
+                    cadena += $"and id_documento_detalle  = {idDocDet} ";
+                }
+
+                if (!string.IsNullOrEmpty(numero))
+                {
+                    cadena += $" and (upper(trim(numero))  like '%{numero.ToUpper().Trim()}%' )";
+                }
+                
+
+                var lstDocDt = new List<MdlDocumentoDetalle>();
+                var cmd = new OracleCommand(cadena);
+                cmd.Connection = con;
+
+                using (var dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {

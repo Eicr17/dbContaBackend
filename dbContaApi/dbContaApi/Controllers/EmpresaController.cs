@@ -3,6 +3,7 @@ using dbContaLibrary.Interfaces;
 using dbContaLibrary.Modelos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NLog;
 
 namespace dbContaApi.Controllers
 {
@@ -11,22 +12,24 @@ namespace dbContaApi.Controllers
     public class EmpresaController : ControllerBase
     {
         private readonly IEmpresa _empresaService;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public EmpresaController(IEmpresa empresaService) 
         {
             _empresaService = empresaService;
+           
         }
 
         [HttpGet]
         [Route("Obtener")]
-        public IActionResult Get() 
+        public IActionResult Get(string? pCriterioBusqueda = null) 
         {
             var resp = new ApiRespuestaListado<EmpresaApi>();
             var lstEmpresa = new List<EmpresaApi>();
-
+            
             try
-            {
-                var lstEmpresaTp = _empresaService.Get();
+            {                
+                var lstEmpresaTp = _empresaService.Get(pCriterioBusqueda);
                 lstEmpresaTp.ToList().ForEach(
                     emp =>
                     {
@@ -35,7 +38,7 @@ namespace dbContaApi.Controllers
                         {
                            idempresa = emp.IdEmpresa,
                            nombre  = emp.Nombre,
-                           usuariocreacion = emp.UsuarioCreacion,
+                           usuario = emp.UsuarioCreacion,
                            fechacreacion = emp.FechaCreacion,
                            nit = emp.Nit,
                         }
@@ -47,51 +50,50 @@ namespace dbContaApi.Controllers
                 resp.total_registros = lstEmpresa.Count;
                 return Ok(resp);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return BadRequest(ex.Message);
+               
             }
         }
 
 
         [HttpPost]
         [Route("Insertar")]
-        public IActionResult Insertar([FromBody] EmpresaApi pRequest) 
+        public IActionResult Insertar([FromBody] DtoEmpresaInsertar pRequest) 
         {
-            var lstTpEmpresa = new MdlEmpresaInsertar();
+            var empresa = new MdlEmpresaInsertar();
             try
             {
-
-                lstTpEmpresa.IdEmpresa = pRequest.idempresa;
-                lstTpEmpresa.Nombre = pRequest.nombre;
-                lstTpEmpresa.UsuarioCreacion = pRequest.usuariocreacion;
-                lstTpEmpresa.Nit = pRequest.nit;
-                _empresaService.Insertar(lstTpEmpresa);
+                
+                empresa.Nombre = pRequest.nombre;
+                empresa.UsuarioCreacion = "Admin";
+                empresa.Nit = pRequest.nit;
+                _empresaService.Insertar(empresa);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a registrado el registro exitosamente";
                 return Ok(resp);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
-                
+                logger.Error(ex, "Error al Insertar los datos de la empresa");
+                return BadRequest("Error al Insertar los datos de la empresa");
             }
         }
 
 
-        [HttpPut]
+        [HttpPost]
         [Route("Actualizar")]
-        public IActionResult Actualizar([FromBody] EmpresaApi pRequest)
+        public IActionResult Actualizar([FromBody] DtoEmpresaActualizar pRequest)
         {
-            var lsActEmpresa = new MdlActualizarEmpresa();
+            var ActEmpresa = new MdlActualizarEmpresa();
             try
             {
-                lsActEmpresa.IdEmpresa = pRequest.idempresa;
-                lsActEmpresa.Nombre = pRequest.nombre;
-                lsActEmpresa.UsuarioCreacion = pRequest.usuariocreacion;
-                lsActEmpresa.Nit = pRequest.nit;
-                _empresaService.Actualizar(lsActEmpresa);
+                ActEmpresa.IdEmpresa = pRequest.idempresa;
+                ActEmpresa.Nombre = pRequest.nombre;
+                ActEmpresa.Usuario = "Admin";
+                ActEmpresa.Nit = pRequest.nit;
+                _empresaService.Actualizar(ActEmpresa);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a  actualizado exitosamente";
                 return Ok(resp);
@@ -103,7 +105,7 @@ namespace dbContaApi.Controllers
             }
         
         }
-        [HttpPut]
+        [HttpDelete]
         [Route("Eliminar/{pId}")]
         public IActionResult Eliminar(int pId) 
         {
@@ -116,8 +118,9 @@ namespace dbContaApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
-                
+                logger.Error(ex, "Error al eliminar el id ");
+                return BadRequest("Error al eliminar el id");
+
             }
              
         }

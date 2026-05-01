@@ -2,8 +2,10 @@
 using dbContaLibrary.Interfaces;
 using dbContaLibrary.Modelos;
 using dbContaLibrary.Servicios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace dbContaApi.Controllers
 {
@@ -13,25 +15,36 @@ namespace dbContaApi.Controllers
     {
         private readonly IArticulo _articuloservice;
 
-        public ArticuloController(IArticulo articuloservice) 
+        public ArticuloController(IArticulo articuloservice)
         {
             _articuloservice = articuloservice;
         }
+        [Authorize]
+        [HttpGet]
+        [Route("Obtener")]
+        public IActionResult GetArticulo(string? pBusqueda = null)
+        {
+            int idArt = 0;
+            string Nombre = "";
 
-      [HttpGet]
-      [Route("Obtener")]
-    public IActionResult GetArticulo() 
-      {
+
             var resp = new ApiRespuestaListado<ArticuloApi>();
             var lstArticulo = new List<ArticuloApi>();
+
+
             try
             {
-                var lstArticuloGet = _articuloservice.Get();
+                if (!int.TryParse(pBusqueda, out idArt))
+                {
+                    Nombre = pBusqueda;
+                }
+
+                var lstArticuloGet = _articuloservice.Get(idArt, Nombre);
                 lstArticuloGet.ToList().ForEach(
                     art =>
                     {
                         lstArticulo.Add(
-                            new ArticuloApi 
+                            new ArticuloApi
                             {
                                 idArticulo = art.IdArticulo,
                                 idTipoArticulo = art.IdTipoArticulo,
@@ -52,7 +65,7 @@ namespace dbContaApi.Controllers
                 resp.total_registros = lstArticulo.Count;
                 return Ok(resp);
             }
-            catch (Exception ex)
+                catch (Exception ex)
             {
 
                 return BadRequest(ex.Message);
@@ -64,16 +77,15 @@ namespace dbContaApi.Controllers
 
         [HttpPost]
         [Route("Insertar")]
-        public IActionResult Insert([FromBody] ArticuloApi item) 
+        public IActionResult Insert([FromBody] DtoArticuloInsert item)
         {
             var TpArticulo = new MdlArticuloCrear();
             try
             {
-                TpArticulo.IdArticulo = item.idArticulo;
                 TpArticulo.IdTipoArticulo = item.idTipoArticulo;
                 TpArticulo.Nombre = item.nombre;
                 TpArticulo.Descripcion = item.descripcion;
-                TpArticulo.UsuarioCreacion = item.usuarioCreacion;
+                TpArticulo.UsuarioCreacion = "Admin";
                 _articuloservice.InsertarArticulo(TpArticulo);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se ha insertado exitosamente el articulo";
@@ -85,13 +97,13 @@ namespace dbContaApi.Controllers
                 return BadRequest(ex.Message);
                 throw;
             }
-        
-        
+
+
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("Actualizar")]
-        public IActionResult Actualizar([FromBody] ArticuloApi item) 
+        public IActionResult Actualizar([FromBody] DtoArticuloActualizar item)
         {
             var tpArticuloAct = new MdlArticuloActualizar();
             try
@@ -100,7 +112,7 @@ namespace dbContaApi.Controllers
                 tpArticuloAct.IdTipoArticulo = item.idTipoArticulo;
                 tpArticuloAct.Nombre = item.nombre;
                 tpArticuloAct.Descripcion = item.descripcion;
-                tpArticuloAct.UsuarioCreacion = item.usuarioCreacion;
+                tpArticuloAct.UsuarioCreacion = "Admin";
                 _articuloservice.ActualizarArticulo(tpArticuloAct);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se ha actualizado exitosmente";
@@ -116,7 +128,7 @@ namespace dbContaApi.Controllers
 
         [HttpDelete]
         [Route("Eliminar/{pIdArt}/{pIdTpArt}")]
-        public IActionResult Eliminar(int pIdArt, int pIdTpArt) 
+        public IActionResult Eliminar(int pIdArt, int    pIdTpArt)
         {
             var resp = new ApiRespuesta();
             try
@@ -131,7 +143,7 @@ namespace dbContaApi.Controllers
                 return BadRequest(ex.Message);
                 throw;
             }
-        
+
         }
     }
 }

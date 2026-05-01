@@ -61,7 +61,7 @@ namespace dbContaApi.Controllers
         }
 
 
-        [HttpPut]
+        [HttpDelete]
         [Route("Eliminar")]
         public IActionResult Eliminar(int pIdLibro, int pIdEmpresa, int pIdTipoLibro) 
         {

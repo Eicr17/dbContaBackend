@@ -10,7 +10,7 @@ namespace dbContaLibrary.Modelos
     {
         public int IdEmpresa { get; set; }
         public string Nombre { get; set; }
-        public string UsuarioCreacion { get; set; }
+        public string Usuario { get; set; }
         public string Nit { get; set; }
     }
 }

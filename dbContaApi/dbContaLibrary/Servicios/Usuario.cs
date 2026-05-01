@@ -21,14 +21,20 @@ namespace dbContaLibrary.Servicios
         }
 
 
-        public IEnumerable<MdlUsuario> GetUsuario()
+        public IEnumerable<MdlUsuario> GetUsuario(string IdUsuario )
         {
             using (var con = new OracleConnection(_config.CadenaConexion))
             {
                 con.Open();
                 var lstUsuario = new List<MdlUsuario>();
-                var cmd = new OracleCommand("Select Id_Usuario, Nombre_Usuario, Password, Email, Fecha_Creacion, Usuario_Creacion from Usuario");
+                
+                var cmd = new OracleCommand(@"Select Id_Usuario, Nombre_Usuario, Password, Email, Fecha_Creacion, Usuario_Creacion from Usuario
+                                              Where Id_Usuario = :idusuario");
+
+
                 cmd.Connection = con;
+                cmd.Parameters.Add("idusuario", OracleDbType.Varchar2).Value =  IdUsuario;
+
 
                 using (var dr = cmd.ExecuteReader())
                 {
@@ -38,8 +44,9 @@ namespace dbContaLibrary.Servicios
                         item.IdUsuario = dr.GetValue(0).ToString();
                         item.NombreUsuario = dr.GetValue(1).ToString();
                         item.Password = dr.GetValue(2).ToString();
-                        item.UsuarioCreacion = dr.GetValue(3).ToString();
-                        item.FechaCreacion = DateTime.Parse( dr.GetValue(4).ToString());
+                        item.Email = dr.GetValue(3).ToString();
+                        item.FechaCreacion = DateTime.Parse(dr.GetValue(4).ToString());
+                        item.UsuarioCreacion = dr.GetValue(5).ToString();
                         lstUsuario.Add(item);
                     }
 
@@ -62,9 +69,12 @@ namespace dbContaLibrary.Servicios
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "DBCONTA.PRC_GRABAR_USUARIO ";
+
+                string passwordHash = BCrypt.Net.BCrypt.HashPassword(item.Password);
+
                 cmd.Parameters.Add(":idusuario", item.IdUsuario);
                 cmd.Parameters.Add(":nombre", item.NombreUsuario);
-                cmd.Parameters.Add(":password", item.Password);
+                cmd.Parameters.Add(":password", passwordHash);
                 cmd.Parameters.Add(":email", item.Email);
                 cmd.Parameters.Add(":usr", item.UsuarioCreacion);
                 cmd.ExecuteNonQuery();

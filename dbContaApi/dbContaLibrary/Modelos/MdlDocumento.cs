@@ -13,10 +13,10 @@ namespace dbContaLibrary.Modelos
         public string Serie { get; set; }
         public int TipoDocumento {get; set;}
         public int IdEmpresa { get; set; }
-        public DateTime Fecha { get; set; }
+        public string Fecha { get; set; }
         public int Monto { get; set; }
         public string UsuarioCreacion { get; set; }
-        public DateTime FechaExpiracion { get; set; }
-        public DateTime FechaCreacion { get; set; }
+        public string FechaExpiracion { get; set; }
+        public string FechaCreacion { get; set; }
     }
 }

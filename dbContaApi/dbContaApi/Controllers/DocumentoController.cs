@@ -5,6 +5,7 @@ using dbContaLibrary.Servicios;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 
 namespace dbContaApi.Controllers
 {
@@ -21,13 +22,15 @@ namespace dbContaApi.Controllers
 
         [HttpGet]
         [Route("Obtener")]
-        public IActionResult Get()
+        public IActionResult Get(string? pCriterioBusqueda = null)
         {
             var resp = new ApiRespuestaListado<DocumentoApi>();
             var lstDocumento = new List<DocumentoApi>();
+
             try
             {
-                var lstTpGetDocumento = _documentoservice.GetDoc();
+            
+                var lstTpGetDocumento = _documentoservice.GetDoc(pCriterioBusqueda);
                 lstTpGetDocumento.ToList().ForEach(
                     Doc =>
                     {
@@ -64,20 +67,17 @@ namespace dbContaApi.Controllers
 
         [HttpPost]
         [Route("Insertar")]
-        public IActionResult Insert([FromBody] DocumentoApi pRequest) 
+        public IActionResult Insert([FromBody] DtoDocumentoInsertar pRequest) 
         {
-            var lstInDoc = new MdlDocCrear();
+            var InDoc = new MdlDocCrear();
             try
             {
-                lstInDoc.Numero = pRequest.numero;
-                lstInDoc.Serie = pRequest.serie;
-                lstInDoc.TipoDocumento = pRequest.tipodocumento;
-                lstInDoc.IdEmpresa = pRequest.idempresa;
-                lstInDoc.Fecha = pRequest.fecha;
-                lstInDoc.Monto = pRequest.monto;
-                lstInDoc.UsuarioCreacion = pRequest.usuariocreacion;
-                lstInDoc.FechaExpiracion = pRequest.fechaexpiracion;
-                _documentoservice.Insertar(lstInDoc);
+              
+                InDoc.IdEmpresa = pRequest.idempresa;
+                InDoc.Monto = pRequest.monto;
+                InDoc.UsuarioCreacion = "Admin";
+                InDoc.FechaExpiracion = pRequest.fechaexpiracion;
+                _documentoservice.Insertar(InDoc);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a insertado exitosamente el Docuemnto";
                 return Ok(resp);
@@ -90,22 +90,20 @@ namespace dbContaApi.Controllers
         
         }
 
-        [HttpPut]
-        [Route("Actualiar")]
-        public IActionResult Actualizar([FromBody] DocumentoApi pRequest) 
+        [HttpPost]
+        [Route("Actualizar")]
+        public IActionResult Actualizar([FromBody] DtoDocumentoActualizar pRequest) 
         {
-            var lstAcDocumento = new MdlDocActualizar();
+            var AcDocumento = new MdlDocActualizar();
             try
             {
-                lstAcDocumento.Numero = pRequest.numero;
-                lstAcDocumento.Serie = pRequest.serie;
-                lstAcDocumento.TipoDocumento = pRequest.tipodocumento;
-                lstAcDocumento.IdEmpresa = pRequest.idempresa;
-                lstAcDocumento.Fecha = pRequest.fecha;
-                lstAcDocumento.Monto = pRequest.monto;
-                lstAcDocumento.UsuarioCreacion = pRequest.usuariocreacion;
-                lstAcDocumento.FechaExpiracion = pRequest.fechaexpiracion;
-                _documentoservice.Actualizar(lstAcDocumento);
+                AcDocumento.Numero = pRequest.numero;
+                AcDocumento.Serie = pRequest.serie;
+                AcDocumento.TipoDocumento = pRequest.tipodocumento;
+                AcDocumento.IdEmpresa = pRequest.idempresa;
+                AcDocumento.Monto = pRequest.monto;
+                AcDocumento.FechaExpiracion = pRequest.fechaexpiracion;
+                _documentoservice.Actualizar(AcDocumento);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = " Se a actualizado el documento exitosamente";
                 return Ok(resp);
@@ -118,7 +116,7 @@ namespace dbContaApi.Controllers
         
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route("Eliminar/{pId}")]
         public IActionResult Eliminar(int pId) 
         {

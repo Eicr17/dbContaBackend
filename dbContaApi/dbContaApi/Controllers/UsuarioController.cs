@@ -1,8 +1,13 @@
 ﻿using dbContaApi.Modelos;
 using dbContaLibrary.Interfaces;
 using dbContaLibrary.Modelos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace dbContaApi.Controllers
 {
@@ -11,22 +16,22 @@ namespace dbContaApi.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuario _usuarioservices;
-        public UsuarioController(IUsuario usuarioservices) 
+        public UsuarioController(IUsuario usuarioservices, IConfiguration configuration) 
         {
 
             _usuarioservices = usuarioservices;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("Obtener")]
-        public IActionResult Get() 
+        public IActionResult Get(string? idUsuario = null) 
         {
             var resp = new ApiRespuestaListado<UsuarioApi>();
             var lstUsuario = new List<UsuarioApi>();
-
             try
             {
-                var lstGetUsuario = _usuarioservices.GetUsuario();
+                var lstGetUsuario = _usuarioservices.GetUsuario(idUsuario);
                 lstGetUsuario.ToList().ForEach(
                 usr =>
                 {
@@ -35,7 +40,6 @@ namespace dbContaApi.Controllers
                         {
                             idusuario = usr.IdUsuario,
                             nombreusuario = usr.NombreUsuario,
-                            password = usr.Password,
                             email = usr.Email,
                             fechacreacion = usr.FechaCreacion,
                             usuariocreacion = usr.UsuarioCreacion
@@ -51,7 +55,6 @@ namespace dbContaApi.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-                throw;
             }
         
         }
@@ -60,18 +63,17 @@ namespace dbContaApi.Controllers
 
         [HttpPost]
         [Route("Insertar")]
-        public IActionResult Insertar([FromBody] UsuarioApi pRequest)
+        public IActionResult Insertar([FromBody] DtoUsuarioInsertar pRequest)
         {
-            var lstTpUsuario = new MdlUsuarioInsertar();
+            var TpUsuario = new MdlUsuarioInsertar();
             try
             {
-
-                lstTpUsuario.IdUsuario = pRequest.idusuario;
-                lstTpUsuario.NombreUsuario = pRequest.nombreusuario;
-                lstTpUsuario.Password = pRequest.password;
-                lstTpUsuario.Email = pRequest.email;
-                lstTpUsuario.UsuarioCreacion = pRequest.usuariocreacion;
-                _usuarioservices.Insertar(lstTpUsuario);
+                TpUsuario.IdUsuario = pRequest.idusuario;
+                TpUsuario.NombreUsuario = pRequest.nombreusuario;
+                TpUsuario.Password = pRequest.password;
+                TpUsuario.Email = pRequest.email;
+                TpUsuario.UsuarioCreacion = "Admin";
+                _usuarioservices.Insertar(TpUsuario);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a registrado el registro exitosamente";
                 return Ok(resp);
@@ -85,19 +87,19 @@ namespace dbContaApi.Controllers
 
 
 
-        [HttpPut]
+        [HttpPost]
         [Route("Actualizar")]
-        public IActionResult Actualizar([FromBody] UsuarioApi pRequest)
+        public IActionResult Actualizar([FromBody] DtoUsuarioActualizar pRequest)
         {
-            var lsActUsuario = new MdlUsuarioActualizar();
+            var ActUsuario = new MdlUsuarioActualizar();
             try
             {
-                lsActUsuario.IdUsuario = pRequest.idusuario;
-                lsActUsuario.NombreUsuario = pRequest.nombreusuario;
-                lsActUsuario.Password = pRequest.password;
-                lsActUsuario.Email = pRequest.email;
-                lsActUsuario.UsuarioCreacion = pRequest.usuariocreacion;
-                _usuarioservices.Actualizar(lsActUsuario);
+                ActUsuario.IdUsuario = pRequest.idusuario;
+                ActUsuario.NombreUsuario = pRequest.nombreusuario;
+                ActUsuario.Password = pRequest.password;
+                ActUsuario.Email = pRequest.email;
+                ActUsuario.UsuarioCreacion = "Admin";
+                _usuarioservices.Actualizar(ActUsuario);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a  actualizado exitosamente";
                 return Ok(resp);
@@ -113,7 +115,7 @@ namespace dbContaApi.Controllers
 
 
 
-        [HttpPut]
+        [HttpDelete]
         [Route("Eliminar/{pId}")]
         public IActionResult Eliminar(string pId)
         {

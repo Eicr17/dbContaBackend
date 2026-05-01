@@ -35,7 +35,7 @@ namespace dbContaApi.Controllers
                             new CatDocumentoApi
                             {
                                 idcategoriadocumento = art.IdCategoriaDocumento,
-                                usuarioCreacion = art.UsuarioCreacion,
+                                usuariocreacion = art.UsuarioCreacion,
                                 fechaCreacion = art.FechaCreacion,
                             }
                          );
@@ -65,7 +65,7 @@ namespace dbContaApi.Controllers
             try
             {
                 lstCatDoc.IdCategoriaDocumento = item.idcategoriadocumento;
-                lstCatDoc.UsuarioCreacion = item.usuarioCreacion;
+                lstCatDoc.UsuarioCreacion = "Admin";
                 _catDocumentoService.Insertar(lstCatDoc);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a insertado el registro exitosamente";
@@ -80,16 +80,16 @@ namespace dbContaApi.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("Actualizar")]
-        public IActionResult Actualizar([FromBody] CatDocumentoApi item)
+        public IActionResult Actualizar([FromBody] DtoCatDocumentoActualizar item)
         {
-            var lstAcCatDoc = new MdlCatDocActualizar();
+            var AcCatDoc = new MdlCatDocActualizar();
             try
             {
-                lstAcCatDoc.IdCategoriaDocumento = item.idcategoriadocumento;
-                lstAcCatDoc.UsuarioCreacion = item.usuarioCreacion;
-                _catDocumentoService.Actualizar(lstAcCatDoc);
+                AcCatDoc.IdCategoriaDocumento = item.idcategoriadocumento;
+                AcCatDoc.UsuarioCreacion = "Admin";
+                _catDocumentoService.Actualizar(AcCatDoc);
                 var resp = new MdlMensajeRep();
                 resp.mensaje_exitoso = "Se a actualizado el registro exitosamente";
                 return Ok(resp);
@@ -100,7 +100,7 @@ namespace dbContaApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route("Eliminar")]
         public IActionResult Eliminar(int pId) 
         {

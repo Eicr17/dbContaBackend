@@ -9,7 +9,7 @@ namespace dbContaLibrary.Interfaces
 {
     public interface IUsuario
     {
-        public IEnumerable<MdlUsuario> GetUsuario();
+        public IEnumerable<MdlUsuario> GetUsuario(string IdUsuario);
         public void Insertar(MdlUsuarioInsertar item);
         public void Actualizar(MdlUsuarioActualizar item);
         public void Eliminar(string pId);

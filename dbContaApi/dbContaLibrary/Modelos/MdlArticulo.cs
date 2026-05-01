@@ -13,7 +13,7 @@ namespace dbContaLibrary.Modelos
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string UsuarioCreacion { get; set; }
-        public DateTime FechaCreacion { get; set; }
+        public string FechaCreacion { get; set; }
         
     }
 }
